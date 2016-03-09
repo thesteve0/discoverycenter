@@ -1,0 +1,77 @@
+//
+// Variables
+// --------------------------------------------------
+// Bootstrap overrides and new variables
+
+/* Bootstrap overrides */
+$gray-darker:                                                       #131313;
+$gray-dark:                                                         #404040;
+$gray:                                                              #929292;
+$gray-light:                                                        #bdbdbd;
+$gray-lighter:                                                      #e7e7e7;
+$link-color:                                                        #2275B4;
+$link-hover-color:                                                  darken($link-color, 7.5%);
+$default-text:                                                      lighten($gray-dark, 8%);
+
+$breadcrumb-bg:                                                     transparent;
+$breadcrumb-active-color:                                           inherit;
+$breadcrumb-color:                                                  $gray-light;
+$font-family-base:                                                  "Open Sans", Helvetica, Arial, sans-serif;
+$headings-color:                                                    #000;
+$headings-font-family:                                              $font-family-base;
+$headings-font-weight:                                              300;
+$font-family-overpass:                                              Overpass, "Open Sans", Helvetica, Arial, sans-serif;
+
+$font-size-base:                                                    14px;
+$font-size-large:                                                   ceil(($font-size-base * 1.25)); // ~18px
+$font-size-medium:                                                   ceil(($font-size-base * 1.14)); // ~16px
+$font-size-small-plus:                                              ceil(($font-size-base * 0.92)); // ~13px
+$font-size-small:                                                   ceil(($font-size-base * 0.85)); // ~12px
+
+$font-size-h1:                                                      floor(($font-size-base * 2)); // 28px
+$font-size-h2:                                                      floor(($font-size-base * 1.75)); // 24.5px
+$font-size-h3:                                                      ceil(($font-size-base * 1.5)); // 21px
+$font-size-h4:                                                      ceil(($font-size-base * 1.25)); // 17.5px
+$font-size-h5:                                                      $font-size-base;
+$font-size-h6:                                                      ceil(($font-size-base * 0.85)); // ~12px
+$line-height-tall:                                                  1.6;
+
+$navbar-default-border:                                             #dedede;
+$navbar-default-color:                                              #333;
+$navbar-default-color-hover:                                        #000;
+$navbar-default-link-color:                                         $navbar-default-color;
+$navbar-default-link-color-hover:                                   $navbar-default-color-hover;
+$navbar-height:                                                     70px; 
+$navbar-bg-hover:                                                   #EFF0EF;
+$navbar-menu-bg:                                                    $navbar-bg-hover;
+$navbar-menu-bg-hover:                                              darken($navbar-menu-bg, 2.5%);
+$navbar-padding-horizontal:                                         25px;
+$navbar-padding-vertical:                                           25px;
+$navbar-submenu-border:                                             darken($navbar-default-border, 3%);
+
+$input-border-radius:                                               0;
+
+$footer-bg:                                                         #00171D;
+
+$brand-blue:                                                        #003D6E;
+$green:                                                             #3F9C35;
+$green-light:                                                       #92D400;
+$red:                                                               #cc0000;
+$red-dark:                                                          darken($red, 13%) !default;
+$red-darker:                                                        darken($red, 21%) !default;
+$code-color:                                                        $red !default;
+$pre-bg:                                                            #F0F3F5;
+$pre-color:                                                         #003d6e;
+
+// Extra small screen / phone
+// Note: Deprecated $screen-xs and $screen-phone as of v3.0.1
+$screen-xs:                                                         480px;
+$screen-xs-min:                                                     $screen-xs;
+$screen-phone:                                                      $screen-xs-min;
+
+/* OpenShift specific */
+
+$cushion-padding:                                                   40px;
+$footer-bg:                                                         #00171D;
+$screen-menu-min:                                                   600px;
+$screen-menu-max:                                                   $screen-menu-min - 1;

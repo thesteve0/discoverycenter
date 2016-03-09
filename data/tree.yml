@@ -1,0 +1,15 @@
+---
+introduction.html.erb: "/developer/introduction.html.erb"
+application-architect:
+  index.html.erb: "/application-architect/index.html.erb"
+cluster-administrator:
+  index.html.erb: "/cluster-administrator/index.html.erb"
+developer:
+  awesomestuff:
+    testing.html.erb: "/developer/awesomestuff/testing.html.erb"
+  index.html.erb: "/developer/index.html.erb"
+  testing.html.erb: "/developer/testing.html.erb"
+index.html.erb: "/index.html.erb"
+systems-platform-administrator:
+  index.html.erb: "/systems-platform-administrator/index.html.erb"
+  testing.html.erb: "/systems-platform-administrator/testing.html.erb"

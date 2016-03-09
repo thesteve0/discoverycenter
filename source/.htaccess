@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Restricted Access - Authorized Personel Only!"
+AuthUserFile /var/lib/openshift/56dda2227628e1a518000009/app-root/data/.htpasswd
+Require valid-user

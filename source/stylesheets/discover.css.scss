@@ -1,0 +1,181 @@
+// Core variables and mixins
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+
+// OpenShift variables
+@import "subdomain/variables";
+.masthead {
+  background-color: #373534;
+  background-position: center;
+  background-attachment: scroll;
+  background-size: cover;
+  background-image: image-url('/images/ui/bg-masthead-branded.png');
+  background-repeat: no-repeat;
+  color: #fff;
+  @media (min-width: $grid-float-breakpoint) {
+    min-height: 350px;
+    .container {
+      padding-top: 100px;
+    }
+  }
+  .navbar-openshift + & {
+    margin-top: -20px;
+  }
+  h1, .lead {
+    color: inherit;
+  }
+  h1 {
+    font-size: ceil(($font-size-base * 2.29)); // 32px
+    margin-bottom: 20px;
+  }
+  .lead {
+    font-size: ceil(($font-size-base * 1.28)); // 18px;
+    margin-bottom: 30px;
+    @media (min-width: $screen-md-min) {
+      max-width: 70%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  a {
+    color: #7dc3e8;
+    &:hover, &:focus {
+      color: lighten(#7dc3e8, 2.5%);
+    }
+  }
+  &.masthead-overview {
+    background-image: none;
+    .item {
+      &.openshift3-speed {
+        background-color: #1b3962;
+        background-image: image-url('/images/ui/bg-enterprise-overview.jpg');
+        .title-inner {
+          text-align: center;
+          .primary-message {
+            margin-left: auto;
+          }
+        }
+      }
+      &.online {
+        background-color: #1b3962;
+        background-image: image-url('/images/ui/bg-online-overview.jpg');
+        .title-inner {
+          text-align: center;
+          .primary-message {
+            margin-left: auto;
+          }
+        }
+      }
+      &.dedicated {
+        background-color: #1b3962;
+        background-image: image_url('https://www.redhat.com/cms/public/Promo_Containers_Insight_0.jpg'); 
+        .title-inner {
+          text-align: center;
+          .primary-message {
+            margin-left: auto;
+          }
+        }
+        .lead {
+          @media (min-width: $screen-md-min) {
+            max-width: 80%;
+          }  
+        }
+      }
+      &.fico {
+        background-color: #1b3962;
+        background-image: image-url('https://www.redhat.com/cms/public/Homepage_FICO_2000x365_1.jpg');
+        background-position: left 50% top;
+        color: $default-text;
+        h1 {
+          text-shadow: none;
+          font-weight: 600;
+        }
+        .primary-message {
+          text-shadow: none;
+        }
+        .logo-ose {
+          filter: none;
+          -webkit-filter: none;
+        }
+      }
+      &.openshift-31 {
+        background-color: #373534;
+        background-image: image-url('/images/ui/bg-masthead-train.jpg');
+        .title-inner {
+          text-align: center;
+          .primary-message {
+            margin-left: auto;
+          }
+        }
+        .logo-ose {
+          margin: 20px 0 10px 0;
+        }
+      }
+      background-position: right 50% top;
+      background-repeat: no-repeat;
+      background-size: cover;
+      @media (min-width: $screen-sm-min) { 
+        background-position-x: 95%;
+      }
+      .container {
+        padding-top: 70px;
+        padding-bottom: 60px;
+      }
+      .logo-ose, .logo-oso, .logo-osd {
+        margin-bottom: 10px;
+        height: 80px;
+        -webkit-filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.3));
+        filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.3));
+      }
+      h1 {
+        font-size: 36px;
+        text-transform: uppercase;
+        font-weight: normal;
+        text-shadow: 1px 2px 1px rgba(0,0,0,.45);
+      }
+      .primary-message {
+        font-size: 20px;
+        margin-left: 0;
+        text-shadow: 1px 2px 1px rgba(0,0,0,.65);
+      }
+      .title-inner {
+        text-align: left;
+      }
+    }
+    .carousel-indicators {
+      li {
+        background: #ccc;
+        border-color: #ccc;
+        margin: 0 3px;
+      }
+      .active {
+        background: $green;
+        border-color: $green;
+        height: 10px;
+        width: 10px;
+      }
+    }
+  }
+  &.masthead-logo {
+    @media (min-width: $grid-float-breakpoint) {
+      min-height: 350px;
+      .container {
+        padding-top: 20px;
+      }
+    }
+    .logo-ose, .logo-oso, .logo-osd {
+      margin: 40px 0 10px 0;
+      height: 70px;
+      -webkit-filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.3));
+      filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.3));
+    }
+  }
+}
+
+.content-header {
+  border-bottom: 1px solid #e7e7e7;
+}
+
+.main {
+  border-left: 1px solid #e7e7e7;
+}
