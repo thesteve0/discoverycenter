@@ -17,7 +17,6 @@ activate :navtree do |options|
 end
 
 activate :sitemap
-activate :breadcrumbs
 activate :livereload
 
 
@@ -67,11 +66,28 @@ activate :livereload
 # end
 
 # Methods defined in the helpers block are available in templates
-# helpers do
+helpers do
+  def build_breadcrumb(current_page)
+    breadcrumbs = {}
+    current_path = []
+    current_page.path.split(File::SEPARATOR).each do |element|
+      current_path.push element
+      if element == current_page.path.split(File::SEPARATOR).last
+        breadcrumbs["#{current_page.data.title}"] = "/"+current_path.join(File::SEPARATOR)
+      else
+        breadcrumbs["#{element}"] = "/"+current_path.join(File::SEPARATOR)
+      end
+    end
+    html = ""
+    breadcrumbs.each_pair do |key,value|
+      html += "<li><a href='#{value}'>#{key.titlecase}</a></li>"
+    end
+    return html
+  end
 #   def some_helper
 #     "Helping"
 #   end
-# end
+end
 
 set :css_dir, 'stylesheets'
 

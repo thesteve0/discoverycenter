@@ -45,9 +45,7 @@
         <li class="sitename">
           <a href="/">Discovery Center</a>
         </li>
-        <% current_page.path.split(File::SEPARATOR).each do |element| %>
-          <li><%= element %></li>
-        <% end %>
+        <%= build_breadcrumb(current_page) %>
       </ol>
     </div>
     <div class="col-md-4">

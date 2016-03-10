@@ -5,7 +5,6 @@ source 'https://rubygems.org'
 gem "middleman", "~>3.3.12"
 gem 'middleman-navtree'
 gem "middleman-sitemap"
-gem 'middleman-breadcrumbs'
 gem 'middleman-deploy', '~> 1.0'
 
 # Live-reloading plugin
