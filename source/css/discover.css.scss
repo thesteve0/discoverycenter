@@ -9,7 +9,7 @@
   background-position: center;
   background-attachment: scroll;
   background-size: cover;
-  background-image: image-url('/images/ui/bg-masthead-branded.png');
+  background-image: image-url('/img/ui/bg-masthead-branded.png');
   background-repeat: no-repeat;
   color: #fff;
   @media (min-width: $grid-float-breakpoint) {
@@ -178,4 +178,59 @@
 
 .main {
   border-left: 1px solid #e7e7e7;
+}
+
+.sidebar ul, .sidebar li {
+  list-style: none;
+}
+.sidebar ul li {
+  padding-left:10px;
+}
+.sidebar li a {
+  padding-left:15px;
+}
+.sidebar ul {
+  padding-left:0px;
+}
+.sidebar li ul {
+  padding-left:0px;
+}
+.sidebar .parent {
+  padding-left:10px;
+}
+.sidebar a.active, .sidebar a.active:hover {
+  background-color: #DEEAF4;
+  color: #000;
+}
+ .sidebar a.active::before {
+  background-color: #A0C3E5;
+  content: "";
+  display: inline-block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 3px;
+}
+.sidebar label {
+  font-weight:300;
+}
+
+.sidebar form#cse-search-form {
+  padding:5px;
+  margin-bottom:15px;
+}
+.sidebar form#cse-search-form input {
+  border:1px solid #CCC;
+}
+.sidebar form#cse-search-form .btn {
+  top:5px;
+  right:2px;
+}
+.sidebar #cse-search-input-body {
+  font-size: 14px;
+  padding: 3px 12px;
+}
+#cse-search-form-body {
+  margin-bottom:15px;
 }

@@ -6,18 +6,9 @@ set :site_url, 'https://discover.openshift.com/'
 set :openshift_assets, 'https://assets.openshift.net/content'
 
 
-activate :navtree do |options|
-  options.data_file = 'tree.yml' # The data file where our navtree is stored.
-  options.automatic_tree_updates = true # The tree.yml file will be updated automatically when source files are changed.
-  options.ignore_files = ['sitemap.xml', 'robots.txt'] # An array of files we want to ignore when building our tree.
-  options.ignore_dir = ['assets'] # An array of directories we want to ignore when building our tree.
-  options.home_title = 'Home' # The default link title of the home page (located at "/"), if otherwise not detected.
-  options.promote_files = ['introduction.html.erb'] # Any files we might want to promote to the front of our navigation
-  options.ext_whitelist = [] # If you add extensions (like '.md') to this array, it builds a whitelist of filetypes for inclusion in the navtree.
-end
 
 activate :sitemap
-activate :livereload
+#activate :livereload
 
 
 
@@ -84,16 +75,79 @@ helpers do
     end
     return html
   end
-#   def some_helper
-#     "Helping"
-#   end
+def build_navtree(root = nil)
+    html = ""
+    if root == nil 
+      root = navtree_yaml = YAML.load_file('data/tree.yml')
+    end
+    root.each_pair do |folder,contents|
+      if contents.is_a?(String)
+        extensionlessPath = sitemap.extensionless_path(contents)
+      else
+        extensionlessPath = sitemap.extensionless_path(folder)
+      end
+      
+        if extensionlessPath.end_with? ".html"
+          resource = sitemap.find_resource_by_path(extensionlessPath)
+          if resource.nil?
+            puts extensionlessPath
+          end
+          html << "<li><a href='#{resource.url}' class='#{resource == current_page ? 'active' : ''}'>#{resource.data.title}</a></li>"
+        else
+          if current_page.path.split(File::SEPARATOR).count > 1
+            html << "<li><a href='/#{current_page.path.split(File::SEPARATOR).first}/#{folder}' class=''>#{displayname(folder)}</a></li>"
+          else
+            html << "<li class='parent nav-header'><label class='toggle'><span class='symbol fa fa-angle-right'></span> #{displayname(folder)}</label>"
+          end
+          html << "<ul>"
+          #html << build_navtree(contents)
+          if current_page.path.split(File::SEPARATOR).count < 2
+            contents.each do |k,v|
+              if v.is_a?(String)
+                extensionlessPath = sitemap.extensionless_path(v)
+              else
+                extensionlessPath = sitemap.extensionless_path(k)
+              end
+              if extensionlessPath.end_with? ".html"
+                resource = sitemap.find_resource_by_path(extensionlessPath)
+                html << "<li><a href='#{resource.url}' class='#{resource == current_page ? 'active' : ''}'>#{resource.data.title}</a></li>"
+              else
+                html << "<li><a href='#{folder}/#{k}' class=''>#{displayname(k)}</a></li>"
+              end
+            end
+          end
+          html << "</ul>"
+          html << "</li>"
+        end
+    end
+    return html
+  end
+
+  def nav_index(current_page)
+    path = current_page.path.split(File::SEPARATOR)
+    if path.count == 1
+      return data.tree
+    elsif path.count == 2
+      return data.tree[path[0]]
+    elsif path.count == 3
+      return data.tree[path[0]][path[1]]
+    end
+  end
+  
+  def displayname(name)
+    if data.displaynames[name]
+      return data.displaynames[name]
+    else
+      return name.titlecase
+    end
+  end
 end
 
-set :css_dir, 'stylesheets'
+set :css_dir, 'css'
 
-set :js_dir, 'javascripts'
+set :js_dir, 'js'
 
-set :images_dir, 'images'
+set :images_dir, 'img'
 
 # Build-specific configuration
 configure :build do
