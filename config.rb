@@ -5,14 +5,14 @@ set :site_title, "OpenShift Discovery Center"
 set :site_url, 'https://discover.openshift.com/'
 set :openshift_assets, 'https://assets.openshift.net/content'
 
-
-
 activate :sitemap
 #activate :livereload
 
-
-
-
+set :asciidoc, {
+  safe: :safe,
+  template_dir: 'source/templates/',
+  attributes: %W(showtitle source-highlighter=none env=middleman env-middleman middleman-version=#{Middleman::VERSION})
+}
 
 ###
 # Compass

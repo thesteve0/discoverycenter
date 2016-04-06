@@ -1,0 +1,14 @@
+- case @type
+- when :xref
+  - refid = (attr :refid) || @target
+  %a(href="#{@target}")<=(@text || @document.references[:ids].fetch(refid, "[#{refid}]")).tr_s("\n", ' ')
+- when :ref
+  %a(id=@target)
+- when :bibref
+  %a(id=@target)>
+  =%([#{@target}])
+- else
+  - if @attributes["data-target"].blank?
+    %a(href=@target){:id=>@id, :class=>role, :target=>(attr :window), :title=>(attr :title)}=@text
+  - else
+    %a(href=@target){:id=>@id, :class=>role, :target=>(attr :window), :title=>(attr :title), "data-target"=>@attributes["data-target"]}=@text

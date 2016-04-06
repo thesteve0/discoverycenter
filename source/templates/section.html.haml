@@ -1,0 +1,43 @@
+- slevel = @level == 0 && @special ? 1 : @level
+- anchor = nil
+- link = nil
+- if @id
+  - if @document.attr? :sectanchors
+    - anchor = %(<a class="anchor" href="##{@id}"></a>)
+    - link = nil
+  - elsif @document.attr? :sectlinks
+    - anchor = nil 
+    - link = %(<a class="link" href="##{@id}">)
+- if slevel == 0
+  %h1{:id=>@id, :class=>"sect0"}=%(#{anchor}#{link}#{title}#{link && '</a>'})
+  =content
+- else
+  %div{:class=>["sect#{slevel}", role], :id=>@id}
+    -#- if slevel + 1 == 3
+    -#  - haml_tag "h#{slevel + 1}#", foo
+    -#    = captioned_title
+    -#= content
+    -#- snum = @numbered && @caption.nil? && slevel <= (@document.attr 'sectnumlevels', 3).to_i ? %(#{sectnum} ) : nil
+    -#- haml_tag "h#{slevel + 1}#", %(#{anchor}#{link}#{snum}#{captioned_title}#{link && '</a>'})
+    - haml_tag "h#{slevel + 1}" do
+      = captioned_title
+      - if @document.attr? :sectanchors
+        %a{:class => "fragment-identifier js-fragment-identifier fragment-identifier-scroll",
+        :href => "##{@id}"}
+          %i{:class => "fa fa-link"}
+    = content
+    -#- if slevel == 1
+    -#  .sectionbody
+    -#    =content
+    -#- else
+    -#  =content
+-#<div class="category-info helper pt0" id="tutorial">
+-#  <h3 class="category-title">
+-#    Short Photoshop tutorial
+-#      <!-- Fragment Identifier -->
+-#        <a class="fragment-identifier js-fragment-identifier fragment-identifier-scroll" href="#tutorial">
+-#          <i class="fa fa-link"></i>
+-#            </a>
+-#              <!-- End of Fragment Identifier -->
+-#        </h3>
+-#</div>

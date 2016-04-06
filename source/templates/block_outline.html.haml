@@ -1,0 +1,15 @@
+- unless sections.empty?
+  - toclevels ||= (document.attr 'toclevels', 2).to_i
+  - slevel = section_level sections.first
+  -# skip printing the level one section and start with level 2
+  - if slevel != 1
+    %ol{:class=>"sectlevel#{slevel}"}
+      - sections.each do |sec|
+        %li
+          %a{:href=>"#", :class=>"js-scroll-to", "data-target" => "##{sec.id}" }= section_title sec
+          - if (sec.level < toclevels) && (child_toc = converter.convert sec, 'outline')
+            = child_toc
+  - else
+    - sections.each do |sec|
+      - if (sec.level < toclevels) && (child_toc = converter.convert sec, 'outline')
+        = child_toc

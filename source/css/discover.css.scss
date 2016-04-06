@@ -237,3 +237,104 @@
 html,body {
   height:auto;
 }
+
+// As we are using the OpenShift "subdomain" stylesheet we additionally
+// need to reset/override changes we pick up from it
+div[class^="sect"] p {
+  color: #333;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  line-height: 28.8px;
+}
+
+.sect2.conclusion {
+  margin-bottom: 4em;
+}
+
+// is there a better way to do this?
+div[class^="sect"] h1,
+div[class^="sect"] h2,
+div[class^="sect"] h3,
+div[class^="sect"] h4 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  position: relative;
+  padding-right: 60px;
+  margin: 0 0 20px 0;
+  line-height: 45px;
+}
+
+.sect1 h2 {
+  font-size: 45px;
+}
+
+.sect2 h3 {
+  font-size: 22px;
+}
+
+.sect2.conclusion h3 {
+  font-size: 45px;
+}
+
+// table of contents for vsdocs
+.table-of-contents a{
+  font-family: 'Roboto', sans-serif;
+}
+
+// this is a hacky fix for the fact that we always will have setup instructions
+// before the first official steps in our tutorials
+.table-of-contents ol:before {
+  counter-increment: b -1;
+}
+
+// vsdocs steps list
+.steps ul {
+  margin: 0 0 30px;
+  padding: 20px 0 0;
+  list-style-type: none;
+}
+
+.steps ul li {
+  padding-left: 55px;
+  position: relative;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #dae0e7;
+}
+
+.steps ul li span.step-title {
+  font-size: 18px;
+  font-family: Roboto, sans-serif;
+}
+
+// vsdocs code highlighter uses prism.js
+// http://prismjs.com/
+.code-highlight span.copy-code {
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.code-highlight pre code {
+  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+  font-size: 14px;
+}
+
+pre[class*=language-] {
+  background-color: #fdfdfd;
+  border: 1px solid #dae0e7;
+}
+
+// line height is double font size because we're absolutely positioned?
+.code-highlight.code-highlight-with-label:after {
+  font-size: 14px;
+  line-height:28px;
+}
+
+// we move the file title outside the code box, which is a little ugly
+// open to suggestions here
+.code-container .title {
+  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+  background-color: #f0f3f5;
+  padding: 0.5em 0 0.5em 1em;
+}

@@ -7,4 +7,5 @@ developer:
   index.html.erb: "/developer/index.html.erb"
 systems-platform-administrator:
   index.html.erb: "/systems-platform-administrator/index.html.erb"
-  
+fundamentals:
+  index.html.adoc: "/fundamentals/index.html.adoc"
