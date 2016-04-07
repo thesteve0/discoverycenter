@@ -8,7 +8,11 @@
     - if title?
       .title=captioned_title
     -# need to figure out middleman data lookup stuff when inside an asciidoctor template
-    %div{:class => classes, "data-label" => @attributes["language"].capitalize}
+    - if @attributes["language"].nil?
+      - data_label = ""
+    - else
+      - data_label = @attributes["language"].capitalize
+    %div{:class => classes, "data-label" => data_label}
       %span{:class => ["js-copy-to-clipboard","copy-code"]} copy
       - code_lang = attr :language, nil, false
       - code_class = ["language-#{code_lang}"] if code_lang

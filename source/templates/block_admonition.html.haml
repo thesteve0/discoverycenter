@@ -1,0 +1,6 @@
+%div{:id=>@id, :class=>['admonitionblock', (attr :name), role, "note", "js-note"]}
+  %h4.note-title
+    %i{:class=>"fa fa-#{attr :name} fa-2x", :title=>@caption}
+    = (attr :name).capitalize
+  %p.note-description
+    =content

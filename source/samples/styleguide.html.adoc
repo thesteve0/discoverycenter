@@ -189,7 +189,54 @@ suscipit risus.
 '''
 
 [[third-steps]]
-=== Third Steps
+=== Third Steps - Admonitions
+ASCIIdoc has several admonitions that it supports, and they are implemented in
+our template. The following are examples of using each admonition type.
+
+[WARNING]
+====
+This is an example of a warning. Use it to warn the user about a potential
+pitfall.
+====
+
+[IMPORTANT]
+====
+Important is similar to a warning. Use it to call special attention to
+something.
+====
+
+[CAUTION]
+====
+Caution and important are treated with the same style and icon.
+====
+
+[NOTE]
+====
+A note is generally an aside that may provide some extra information that is not
+critical.
+
+Code also works inside of an admonition block:
+[source,markup]
+----
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://path.com/to/the/compiled/style.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://path.com/to/the/chosen/theme.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://path.com/to/the/JavaScript/library.js"></script>
+----
+====
+
+[TIP]
+====
+A tip is a suggestion for an enhancement or improvement.
+====
+'''
+
+[[steps-anywhere]]
+=== Fourth Steps Anywhere
 We support steps lists anywhere, really. Morbi ut molestie ante, et fringilla
 arcu.  Integer ac risus venenatis, fringilla nisi dapibus, tincidunt ipsum.
 Interdum et malesuada fames ac ante ipsum primis in faucibus.  Suspendisse

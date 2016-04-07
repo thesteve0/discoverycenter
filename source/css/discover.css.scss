@@ -318,6 +318,7 @@ div[class^="sect"] h4 {
 .code-highlight pre code {
   font-family: Consolas, Monaco, 'Andale Mono', monospace;
   font-size: 14px;
+  padding: 2em 1em;
 }
 
 pre[class*=language-] {
@@ -338,3 +339,79 @@ pre[class*=language-] {
   background-color: #f0f3f5;
   padding: 0.5em 0 0.5em 1em;
 }
+
+// asciidoc supports the following admonitions:
+// WARNING
+// IMPORTANT
+// CAUTION
+// NOTE
+// TIP
+// admonition general
+
+h4.note-title {
+  font-family: Roboto,sans-serif;
+  margin: 0 0 .5em;
+  font-weight: 300;
+  font-size: 22px;
+  text-transform: none;
+  color: #28c;
+}
+
+.fa-warning, .fa-exclamation-triangle, .fa-tip,
+.fa-important, .fa-caution, .fa-note {
+  vertical-align: middle;
+}
+
+// base box - it's the color for note because of css class conflicts
+.admonitionblock.note {
+  box-shadow: inset 5px 0 0 0 #28c;
+}
+
+// warning
+.note.warning {
+  box-shadow: inset 5px 0 0 0 #ff3625;
+}
+
+.warning h4.note-title {
+  color: #ff3625;
+}
+
+.fa-warning:before, .fa-exclamation-triangle:before {
+  color: #ff3625;
+}
+
+// important and caution
+.note.important, .note.caution {
+  box-shadow: inset 5px 0 0 0 #ECB008;
+}
+
+.important h4.note-title, .caution h4.note-title {
+  color: #ECB008;
+}
+
+.fa-important:before, .fa-caution:before {
+  content: "\f06a";
+  color: #ECB008;
+}
+
+// note
+.fa-note:before {
+  content: "\f249";
+  color: #28c;
+}
+
+// tip
+.note.tip  {
+  box-shadow: inset 5px 0 0 0 #4b5;
+}
+
+.tip h4.note-title {
+  color: #4b5;
+}
+
+.fa-tip:before {
+  content: "\f058";
+  color: #4b5;
+}
+
+
