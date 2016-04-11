@@ -1,17 +1,17 @@
 -# We are going to handle code completely differently
 - if @style == 'source'
+  -# pull in the display names
+  - names = YAML.load_file('data/displaynames.yml')
+  - data_label = ""
   - classes = ["code-highlight"]
   -# if a data label is specified add the "code-highlight-with-label" class
   - if !@attributes["language"].nil?
     - classes << "code-highlight-with-label"
+    - data_label = names[@attributes["language"]]
   %div{:class => ["code-container","code-highlight-attached"]}
     - if title?
       .title=captioned_title
     -# need to figure out middleman data lookup stuff when inside an asciidoctor template
-    - if @attributes["language"].nil?
-      - data_label = ""
-    - else
-      - data_label = @attributes["language"].capitalize
     %div{:class => classes, "data-label" => data_label}
       %span{:class => ["js-copy-to-clipboard","copy-code"]} copy
       - code_lang = attr :language, nil, false
