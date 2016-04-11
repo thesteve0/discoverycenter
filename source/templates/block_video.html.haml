@@ -1,0 +1,8 @@
+%div{:id=>@id, :class=>[@style, role, "fluid-width-video-wrapper"], :style=>"padding-top:50%;"}
+  - if video_iframe?
+    %iframe{:class=>["video","js-responsive-video"],:width=>(attr :width), :height=>(attr :height), :src=>video_uri, :frameborder=>0, :allowfullscreen=>!(option? :nofullscreen)}
+  - else
+    %video{:src=>video_uri, :width=>(attr :width), :height=>(attr :height),
+        :poster=>((attr :poster) ? media_uri(attr :poster) : nil), :autoplay=>(option? :autoplay),
+        :controls=>!(option? :nocontrols), :loop=>(option? :loop)}
+      Your browser does not support the video tag.
