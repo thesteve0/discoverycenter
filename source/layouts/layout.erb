@@ -41,19 +41,11 @@
             <div class="sidebar js-sidebar-fixed">
               <!-- Vertical Menu -->
               <nav class="menu-vertical-wrapper">
-                <% if current_page.path.split(File::SEPARATOR).count == 1 %>
-                  <ul class="menu-vertical  js-menu-vertical" data-prepend-to=".js-layout" data-select="Menu">
-                    <%= build_navtree() %>
-                    <li><a href='https://access.redhat.com/documentation/en-US/OpenShift_Online/' target="_blank">Documentation <span class="fa fa-external-link small"></span></a></li>
-                    <li><a href='/help.html'>Get Help <span class="fa fa-question-circle small"></span></a></li>
-                  </ul>
-                <% else %>
-                  <ul class="menu-vertical  js-menu-vertical" data-prepend-to=".js-layout" data-select="Menu">
-                    <%= build_navtree(nav_index(current_page)) %>
-                    <li><a href='https://access.redhat.com/documentation/en-US/OpenShift_Online/' target="_blank">Documentation <span class="fa fa-external-link small"></span></a></li>
-                    <li><a href='/help.html'>Get Help <span class="fa fa-question-circle small"></span></a></li>
-                  </ul>
-                <% end %>
+                <ul class="menu-vertical  js-menu-vertical" data-prepend-to=".js-layout" data-select="Menu">
+                  <%= build_navtree(nav_index(current_page)) %>
+                  <li><a href='https://access.redhat.com/documentation/en-US/OpenShift_Online/' target="_blank">Documentation <span class="fa fa-external-link small"></span></a></li>
+                  <li><a href='/help.html'>Get Help <span class="fa fa-question-circle small"></span></a></li>
+                </ul>
                 <div id="google_translate_element"></div><script type="text/javascript">
 function googleTranslateElementInit() {
         new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
