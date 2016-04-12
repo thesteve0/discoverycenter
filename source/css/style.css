@@ -9887,7 +9887,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   position: relative;
   padding: 0;
   border: 1px solid #cbd3dd;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 .vertical-menu-select select {
   cursor: pointer;
