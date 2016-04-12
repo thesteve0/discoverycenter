@@ -172,14 +172,11 @@
   }
 }
 
-.content-header {
-  border-bottom: 1px solid #e7e7e7;
-}
-
 .main {
   border-left: 1px solid #e7e7e7;
 }
 
+// navigation
 .sidebar ul, .sidebar li {
   list-style: none;
 }
@@ -233,11 +230,39 @@ html,body {
   height:auto;
 }
 
+#content {
+  padding: 0;
+}
+
+// breadcrumbs
+@media screen and (min-width: 991px){
+  .report {
+    text-align:right;
+  }
+}
+
+.breadcrumb {
+  padding: 3px 0 10px;
+  margin: 0;
+  line-height: 20px;
+}
+
+.report {
+  margin:6px 0 0;
+  line-height: 20px;
+  font-weight: 300;
+}
+
+.row.content-header {
+  padding-bottom: 10px;
+}
+
 // As we are using the OpenShift "subdomain" stylesheet we additionally
 // need to reset/override changes we pick up from it
 code {
   font-family: Consolas, Monaco, 'Andale Mono', monospace;
 }
+
 div[class^="sect"] p {
   color: #333;
   font-size: 16px;
