@@ -80,6 +80,8 @@ def build_navtree(root = nil)
     if root == nil 
       root = navtree_yaml = YAML.load_file('data/tree.yml')
     end
+    #require 'pry'
+    #binding.pry
     root.each_pair do |folder,contents|
       if contents.is_a?(String)
         extensionlessPath = sitemap.extensionless_path(contents)
@@ -92,10 +94,12 @@ def build_navtree(root = nil)
           if resource.nil?
             puts extensionlessPath
           end
-          html << "<li><a href='#{resource.url}' class='#{resource == current_page ? 'active' : ''}'>#{resource.data.title}</a></li>"
+          #html << "<li><a href='#{resource.url}' class='#{resource == current_page ? 'active' : ''}'>#{resource.data.title}</a></li>"
+          html << "<li class='#{resource == current_page ? 'selected' : ''}'><a href='#{resource.url}'>#{resource.data.title}</a></li>"
         else
           if current_page.path.split(File::SEPARATOR).count > 1
-            html << "<li><a href='/#{current_page.path.split(File::SEPARATOR).first}/#{folder}' class=''>#{displayname(folder)}</a></li>"
+            #html << "<li class='has-children'><a href='/#{current_page.path.split(File::SEPARATOR).first}/#{folder}'>#{displayname(folder)}</a></li>"
+            html << "<li class='has-children'><a href='#'>#{displayname(folder)}</a></li>"
           else
             html << "<li class='parent nav-header'><label class='toggle'><span class='symbol fa fa-angle-right'></span> #{displayname(folder)}</label>"
           end

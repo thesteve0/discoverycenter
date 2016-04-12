@@ -7,5 +7,11 @@ developer:
   index.html.erb: "/developer/index.html.erb"
 systems-platform-administrator:
   index.html.erb: "/systems-platform-administrator/index.html.erb"
-fundamentals:
-  index.html.adoc: "/fundamentals/index.html.adoc"
+samples:
+  index.html.adoc: "/samples/index.html.adoc"
+  styleguide.html.adoc: "/samples/styleguide.html.adoc"
+  overview-ssh-putty.adoc: "/samples/overview-ssh-putty.adoc"
+  deeper:
+    first.html.adoc: "/samples/deeper/first.html.adoc"
+    deeper-still:
+      second.html.adoc: "/samples/deeper/deeper-still/second.html.adoc"
