@@ -25,7 +25,7 @@ script:
     git pull production master;
     cd ..
   fi
-- bundle exec middleman build
+- bundle exec middleman build --no-clean
 - if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then bundle exec middleman deploy; fi
 env:
   global:
