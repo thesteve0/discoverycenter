@@ -1,0 +1,332 @@
+--- 
+title: A Sample Tutorial Style Guide
+---
+:sectanchors:
+:linkattrs:
+:toc: macro
+:toclevels: 4
+
+[[tutorial-intro]]
+[.tutorial-intro]
+== A Sample Tutorial Style Guide
+toc::[]
+
+This is the introduction. It should give a quick overview of what's going to
+happen. You should always have an introduction - it is required.
+
+This second paragraph is where you can put a little more detail. You might want
+to have an external link to the technology or some more background information
+to let the reader know about what they are about to do. It is also required. Do
+not add another paragraph. Make sure all sections have anchors. The intro
+requires the correct role. Put a horizontal line after the introduction section.
+
+'''
+
+[[setup-instructions]]
+=== Setup Instructions
+Even if no setup or preparation is needed, this section is required. Simply
+indicate that no setup or preparation is needed. The following syntax should be
+used for each step in a process. Morbi ut molestie ante, et fringilla arcu.
+Integer ac risus venenatis, fringilla nisi dapibus, tincidunt ipsum. Interdum et
+malesuada fames ac ante ipsum primis in faucibus.  Suspendisse facilisis euismod
+sollicitudin.  Vestibulum dignissim porta mi ut placerat. Nam dictum sapien
+finibus tellus.
+
+In varius congue dui non placerat. Integer massa ipsum, dictum varius sem sed,
+rhoncus lacinia ipsum. Fusce at orci ut ipsum pulvinar auctor. Aliquam nec
+aliquet purus, et lobortis magna. In euismod lorem magna, sed vestibulum mauris
+faucibus id. Vestibulum lobortis ultrices arcu, consequat auctor lectus eleifend
+eget. Ut purus ex, tempus eu euismod et, iaculis et magna. In a imperdiet odio,
+imperdiet commodo eros. Aenean placerat lorem nunc. Aenean ultrices arcu tortor,
+id viverra massa porta in.
+
+[.steps]
+- [.step-number]#1# [.step-title]#Title of Step#
++
+Procedure for this step. Continue each paragraph in the step using the + sign.
+A list of steps requires the steps role. Note that you must include the step
+number in your step title as above, and use the *unordered* list format
+(hyphens). 
++
+Morbi ut molestie ante, et fringilla arcu.  Integer ac risus venenatis,
+fringilla nisi dapibus, tincidunt ipsum. Interdum et malesuada fames ac ante
+ipsum primis in faucibus.  Suspendisse facilisis euismod sollicitudin.
+Vestibulum dignissim porta mi ut placerat. Nam dictum sapien finibus tellus
+laoreet vehicula. Etiam eu purus sit amet diam porta aliquet.  Praesent in
+suscipit risus.
+
+- [.step-number]#2# [.step-title]#The Next Step Title#
++
+Procedure for this step. Donec pulvinar, nulla pretium vehicula dignissim, dolor
+velit eleifend nisl, ac aliquam velit tortor non enim.  Etiam eget lacus
+facilisis est sodales ornare.  
++
+Morbi ut molestie ante, et fringilla arcu.  Integer ac risus venenatis,
+fringilla nisi dapibus, tincidunt ipsum. Interdum et malesuada fames ac ante
+ipsum primis in faucibus.  Suspendisse facilisis euismod sollicitudin.
+Vestibulum dignissim porta mi ut placerat. Nam dictum sapien finibus tellus
+laoreet vehicula. Etiam eu purus sit amet diam porta aliquet.  Praesent in
+suscipit risus.
+
+- [.step-number]#3# [.step-title]#A Code Step#
++
+[source,bash]
+----
+# do a thing
+# might be multiple commands
+----
++
+You want to indicate expected output after running a command:
++
+[source,bash]
+----
+expected output
+may be multiple lines
+----
++
+Do not put a horizontal line after a steps list.
+
+[[first-steps]]
+=== First Step
+This should be the first actual step in the tutorial. Tutorial steps may also
+use the steps list as above. Or, if they are single tasks, a steps list may not
+be needed.
+
+In this case, we have a simple block of source code that might get used to do
+something. Code highlighting is automatic if you use the proper syntax to set
+the role and language for the block. Here is a bit of code from Asciidoctor's
+backend HTML5 processor. You can also provide a filename using the syntax below.
+
+[source,ruby]
+.filename.rb
+----
+# Add custom functions to this module that you want to use in your Haml
+# templates. Within the template you can invoke them as top-level functions
+# just like the built-in helper functions that Haml provides.
+module Haml::Helpers
+
+  ##
+  # Returns corrected section level.
+  #
+  # @param sec [Asciidoctor::Section] the section node (default: self).
+  # @return [Integer]
+  #
+  def section_level(sec = self)
+    @_section_level ||= (sec.level == 0 && sec.special) ? 1 : sec.level
+  end
+
+  ##
+  # Returns the captioned section's title, optionally numbered.
+  #
+  # @param sec [Asciidoctor::Section] the section node (default: self).
+  # @return [String]
+  #
+  def section_title(sec = self)
+    sectnumlevels = document.attr(:sectnumlevels, 3).to_i
+
+    if sec.numbered && !sec.caption && sec.level <= sectnumlevels
+      [sec.sectnum, sec.captioned_title].join(' ')
+    else
+      sec.captioned_title
+    end
+  end
+----
+
+Here is some JavaScript:
+
+[source,javascript]
+----
+var InteractiveSteps = (function(){
+	var steps = $('.js-steps-interactive');
+
+	steps.each(function() {
+		var step = $(this);
+		var config = config = {
+			headerTag: "h4",
+		    transitionEffect: "fade",
+		    labels: {
+		    	current: ''
+		    }
+		}
+		var userConfig = step.data('config');
+
+		$.extend(true, config, userConfig);
+		steps.steps(config);
+	});
+})();
+----
+
+'''
+
+[[second-steps]]
+=== Second Steps
+In some cases, a major step may have sub-steps. Steps should be section 3
+elements, and sub-steps should be section 4 elements. These paragraphs should be
+an introduction to the major step. The introduction should **not** have a line
+after it, but each sub-step should. Do not nest any deeper than a single
+substep.
+
+[[second-step-sub-one]]
+==== Substep One
+Here is the first substep.  Morbi ut molestie ante, et fringilla arcu.  Integer
+ac risus venenatis, fringilla nisi dapibus, tincidunt ipsum. Interdum et
+malesuada fames ac ante ipsum primis in faucibus.  Suspendisse facilisis euismod
+sollicitudin.  Vestibulum dignissim porta mi ut placerat. Nam dictum sapien
+finibus tellus laoreet vehicula. Etiam eu purus sit amet diam porta aliquet.
+Praesent in suscipit risus.
+
+'''
+
+[[second-step-sub-two]]
+==== Substep Two
+Another substep. Morbi ut molestie ante, et fringilla arcu.  Integer ac risus
+venenatis, fringilla nisi dapibus, tincidunt ipsum. Interdum et malesuada fames
+ac ante ipsum primis in faucibus.  Suspendisse facilisis euismod sollicitudin.
+Vestibulum dignissim porta mi ut placerat. Nam dictum sapien finibus tellus
+laoreet vehicula. Etiam eu purus sit amet diam porta aliquet.  Praesent in
+suscipit risus.
+
+'''
+
+[[third-steps]]
+=== Third Steps - Admonitions
+ASCIIdoc has several admonitions that it supports, and they are implemented in
+our template. The following are examples of using each admonition type.
+
+[WARNING]
+====
+This is an example of a warning. Use it to warn the user about a potential
+pitfall.
+====
+
+[IMPORTANT]
+====
+Important is similar to a warning. Use it to call special attention to
+something.
+====
+
+[CAUTION]
+====
+Caution and important are treated with the same style and icon.
+====
+
+[NOTE]
+====
+A note is generally an aside that may provide some extra information that is not
+critical.
+
+Code also works inside of an admonition block:
+[source,markup]
+----
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://path.com/to/the/compiled/style.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://path.com/to/the/chosen/theme.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://path.com/to/the/JavaScript/library.js"></script>
+----
+====
+
+[TIP]
+====
+A tip is a suggestion for an enhancement or improvement.
+====
+'''
+
+[[media-inclusion]]
+=== Including Media in Your Document
+ASCIIdoc makes it easy to include media, and the template has some special
+optimizations for it. You can include a video using the standard ASCIIdoc
+format.
+
+Here's a YouTube video:
+
+video::XfTRyF6TX6o[youtube]
+
+And here's a Vimeo video:
+
+video::35705170[vimeo]
+
+Here's an image:
+
+image::https://assets.openshift.net/content/subdomain/openshift-logo-horizontal.svg[]
+
+[[tables]]
+=== Tables
+ASCIIdoc tables work just fine:
+
+[cols="2*", options="header"]
+|===
+|Marker
+|Effect
+
+|`enable_jpda`
+|Will enable the JPDA socket based transport on the java virtual machine running the Tomcat server. This enables you to remotely debug code running inside Tomcat.
+
+|`skip_maven_build`
+|Maven build step will be skipped
+
+|`force_clean_build`
+|Will start the build process by removing all non-essential Maven dependencies. Any current dependencies specified in your pom.xml file will then be re-downloaded.
+
+|`java7`
+|Will run Tomcat with Java7 if present. If no marker is present then the baseline Java version will be used (currently Java6)
+|===
+
+
+[[steps-anywhere]]
+=== Fourth Steps Anywhere
+We support steps lists anywhere, really. Morbi ut molestie ante, et fringilla
+arcu.  Integer ac risus venenatis, fringilla nisi dapibus, tincidunt ipsum.
+Interdum et malesuada fames ac ante ipsum primis in faucibus.  Suspendisse
+facilisis euismod sollicitudin.  Vestibulum dignissim porta mi ut placerat. Nam
+dictum sapien finibus tellus laoreet vehicula. Etiam eu purus sit amet diam
+porta aliquet.  Praesent in suscipit risus.
+
+[.steps]
+- [.step-number]#1# [.step-title]#Title of Step#
++
+Procedure for this step. Continue each paragraph in the step using the + sign.
+A list of steps requires the steps role.  Donec pulvinar, nulla pretium vehicula
+dignissim, dolor velit eleifend nisl, ac aliquam velit tortor non enim.  Etiam
+eget lacus facilisis est sodales ornare.  
++
+Morbi ut molestie ante, et fringilla arcu.  Integer ac risus venenatis,
+fringilla nisi dapibus, tincidunt ipsum. Interdum et malesuada fames ac ante
+ipsum primis in faucibus.  Suspendisse facilisis euismod sollicitudin.
+Vestibulum dignissim porta mi ut placerat. Nam dictum sapien finibus tellus
+laoreet vehicula. Etiam eu purus sit amet diam porta aliquet.  Praesent in
+suscipit risus.
+
+- [.step-number]#2# [.step-title]#Title of Step#
++
+Procedure for this step. Donec pulvinar, nulla pretium vehicula dignissim, dolor
+velit eleifend nisl, ac aliquam velit tortor non enim.  Etiam eget lacus
+facilisis est sodales ornare.  
++
+Morbi ut molestie ante, et fringilla arcu.  Integer ac risus venenatis,
+fringilla nisi dapibus, tincidunt ipsum. Interdum et malesuada fames ac ante
+ipsum primis in faucibus.  Suspendisse facilisis euismod sollicitudin.
+Vestibulum dignissim porta mi ut placerat. Nam dictum sapien finibus tellus
+laoreet vehicula. Etiam eu purus sit amet diam porta aliquet.  Praesent in
+suscipit risus.
+
+[[conclusion]]
+[.conclusion]
+=== Conclusion
+Every tutorial should wrap with a conclusion and remind the reader a little bit
+about what they did. It should be a paragraph or two summary. Cras facilisis
+tellus varius, auctor elit vitae, tincidunt metus. Sed accumsan neque lobortis
+leo egestas condimentum. Maecenas ultricies consequat tellus a maximus. Cras
+ultricies finibus erat, vitae feugiat odio dictum et. Morbi ultricies vestibulum
+blandit. Vivamus sed lectus hendrerit dolor iaculis commodo id nec dui. Sed id
+nisl sit amet quam mollis congue nec vitae eros.
+
+Nullam gravida turpis placerat, dapibus nisl pellentesque, tristique sem.
+Praesent consequat faucibus ex et tristique. Fusce ullamcorper, lacus in
+ullamcorper malesuada, arcu ligula fringilla tortor, eget efficitur ligula
+turpis non odio. Aenean at elit ipsum. Sed eget risus lorem. Aenean dictum nisi
+eu felis convallis, et blandit risus fermentum. Nunc vitae magna fringilla,
+condimentum lorem sit amet, cursus mi.

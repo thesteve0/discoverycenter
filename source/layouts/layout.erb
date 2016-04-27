@@ -19,6 +19,7 @@
   <%= stylesheet_link_tag "style", :media => "screen, print" %>
   <%= stylesheet_link_tag "#{openshift_assets}/subdomain.css", :media => "screen, print" %>
   <%= stylesheet_link_tag "discover", :media => "screen, print" %>
+  <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
     <%= javascript_include_tag "#{openshift_assets}/html5shiv.js" %>
@@ -29,64 +30,61 @@
   <%= javascript_include_tag "#{openshift_assets}/modernizr.js" %>
   <%= javascript_include_tag "#{openshift_assets}/subdomain.js" %>
   <%= javascript_include_tag "//cdn.getsmartcontent.com/CJ6H4ZCB.js" %>
-  <%= javascript_include_tag "all.js" %>
 </head>
 <body class="<%= page_classes %> online">
 <%= partial "layouts/tracking" %>
 <%= partial "layouts/navbar" %>
-
-<div class="container">
-  <div class="row content-header">
-    <div class="col-md-8">
-      <div class="toggle-nav visible-xs pull-left">
-        <button type="button" data-toggle="offcanvas" class="btn btn-default btn-sm">
-          Toggle nav
-        </button>
+  <div id="content">
+    <div class="container">
+      <div class="row content-header">
+        <div class="col-md-8">
+          <ol class="breadcrumb">
+            <li class="sitename">
+            <a href="/">Discovery Center</a>
+            </li>
+            <%= build_breadcrumb(current_page) %>
+          </ol>
+        </div>
+        <div class="col-md-4">
+          <div class="report">
+            <div class="fa fa-github"></div>
+            <a href="/report.html">Report a Content Issue</a>
+            or
+            <a href="https://github.com/openshift/discoverycenter#contributing">Contribute</a>
+          </div>
+        </div>
       </div>
-      <ol class="breadcrumb">
-        <li class="sitename">
-          <a href="/">Discovery Center</a>
-        </li>
-        <%= build_breadcrumb(current_page) %>
-      </ol>
-    </div>
-    <div class="col-md-4">
-      <div class="report">
-        <div class="fa fa-github"></div>
-        <a href="/report.html">Report a Content Issue</a>
-        or
-        <a href="https://github.com/openshift/discoverycenter#contributing">Contribute</a>
-      </div>
-    </div>
-  </div>
-  <div class="row row-offcanvas row-offcanvas-left">
-    <div class="col-xs-8 col-sm-3 col-md-3 sidebar sidebar-offcanvas">
-      <% if current_page.path.split(File::SEPARATOR).count == 1 %>
-        <ul class="nav nav-sidebar">
-          <%= build_navtree() %>
-          <li><a href='https://access.redhat.com/documentation/en-US/OpenShift_Online/' target="_blank">Documentation <span class="fa fa-external-link small"></span></a></li>
-          <li><a href='/help.html'>Get Help <span class="fa fa-question-circle small"></span></a></li>
-        </ul>
-      <% else %>
-        <ul class="nav nav-sidebar">
-          <%= build_navtree(nav_index(current_page)) %>
-          <li><a href='https://access.redhat.com/documentation/en-US/OpenShift_Online/' target="_blank">Documentation <span class="fa fa-external-link small"></span></a></li>
-          <li><a href='/help.html'>Get Help <span class="fa fa-question-circle small"></span></a></li>
-        </ul>
-      <% end %>
-      
-      <div id="google_translate_element"></div><script type="text/javascript">
+      <div class="layout with-left-sidebar js-layout">
+        <div class="row">
+          <div class="col-md-3 hidden-sm hidden-xs">
+            <div class="sidebar js-sidebar-fixed">
+              <!-- Vertical Menu -->
+              <nav class="menu-vertical-wrapper">
+                <ul class="menu-vertical  js-menu-vertical" data-prepend-to=".js-layout" data-select="Menu">
+                  <%= build_navtree(nav_index(current_page)) %>
+                  <li><a href='https://access.redhat.com/documentation/en-US/OpenShift_Online/' target="_blank">Documentation <span class="fa fa-external-link small"></span></a></li>
+                  <li><a href='/help.html'>Get Help <span class="fa fa-question-circle small"></span></a></li>
+                </ul>
+                <div id="google_translate_element"></div><script type="text/javascript">
 function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
 }
-</script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-    </div>
-    <div class="col-xs-12 col-sm-9 col-md-9 main">
-      <%= yield %>
+                </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+              </nav>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="main-content">
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 <%= partial "layouts/footer" %>
+<%= javascript_include_tag "all.js" %>
+<%= javascript_include_tag "custom.js" %>
 <script type="text/javascript">
   <%= content_for?(:javascript) ? yield_content(:javascript) : '' %>
 </script>

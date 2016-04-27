@@ -172,25 +172,17 @@
   }
 }
 
-.content-header {
-  border-bottom: 1px solid #e7e7e7;
-}
-
 .main {
   border-left: 1px solid #e7e7e7;
 }
 
+// navigation
 .sidebar ul, .sidebar li {
   list-style: none;
 }
-.sidebar ul li {
-  padding-left:10px;
-}
-.sidebar li a {
-  padding-left:15px;
-}
 .sidebar ul {
   padding-left:0px;
+  font-family: Roboto, sans-serif
 }
 .sidebar li ul {
   padding-left:0px;
@@ -236,4 +228,326 @@
 }
 html,body {
   height:auto;
+}
+
+#content {
+  padding: 0;
+}
+
+.main-content {
+  padding-bottom: 3em;
+}
+
+// breadcrumbs
+.row.content-header {
+  padding-bottom: 10px;
+}
+
+@media screen and (min-width: 991px){
+  .report {
+    text-align:right;
+  }
+  .row.content-header {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e7e7e7;
+    margin-bottom: 15px;
+  }
+  .breadcrumb {
+  padding: 3px 0 10px;
+  }
+}
+
+.breadcrumb {
+    padding: 3px 0 0px;
+  margin: 0;
+  line-height: 20px;
+}
+
+.report {
+  margin:6px 0 0;
+  line-height: 20px;
+  font-weight: 300;
+}
+
+// As we are using the OpenShift "subdomain" stylesheet we additionally
+// need to reset/override changes we pick up from it
+code {
+  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+}
+
+div[class^="sect"] p {
+  color: #333;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  line-height: 28.8px;
+}
+
+.sect2.conclusion {
+  margin-bottom: 4em;
+}
+
+// is there a better way to do this?
+div[class^="sect"] h1,
+div[class^="sect"] h2,
+div[class^="sect"] h3,
+div[class^="sect"] h4 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  position: relative;
+  padding-right: 60px;
+  margin: 0 0 20px 0;
+  line-height: 45px;
+}
+
+.sect1 h2 {
+  font-size: 45px;
+}
+
+.sect2 h3 {
+  font-size: 22px;
+}
+
+.sect2.conclusion h3 {
+  font-size: 45px;
+}
+
+// table of contents for vsdocs
+.table-of-contents a{
+  font-family: 'Roboto', sans-serif;
+}
+
+// this is a hacky fix for the fact that we always will have setup instructions
+// before the first official steps in our tutorials
+.table-of-contents ol:before {
+  counter-increment: b -1;
+}
+
+// vsdocs steps list
+.steps ul {
+  margin: 0 0 30px;
+  padding: 20px 0 0;
+  list-style-type: none;
+}
+
+.steps ul li {
+  padding-left: 55px;
+  position: relative;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #dae0e7;
+}
+
+.steps ul li span.step-title {
+  font-size: 18px;
+  font-family: Roboto, sans-serif;
+}
+
+// vsdocs code highlighter uses prism.js
+// http://prismjs.com/
+.code-highlight span.copy-code {
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.code-highlight pre code {
+  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+  font-size: 14px;
+  padding: 2em 1em;
+}
+
+pre[class*=language-] {
+  background-color: #fdfdfd;
+  border: 1px solid #dae0e7;
+}
+
+// line height is double font size because we're absolutely positioned?
+.code-highlight.code-highlight-with-label:after {
+  font-size: 14px;
+  line-height:28px;
+}
+
+// we move the file title outside the code box, which is a little ugly
+// open to suggestions here
+.code-container .title {
+  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+  background-color: #f0f3f5;
+  padding: 0.5em 0 0.5em 1em;
+}
+
+// asciidoc supports the following admonitions:
+// WARNING
+// IMPORTANT
+// CAUTION
+// NOTE
+// TIP
+// admonition general
+
+h4.note-title {
+  font-family: Roboto,sans-serif;
+  margin: 0 0 .5em;
+  font-weight: 300;
+  font-size: 22px;
+  text-transform: none;
+  color: #28c;
+}
+
+.fa-warning, .fa-exclamation-triangle, .fa-tip,
+.fa-important, .fa-caution, .fa-note {
+  vertical-align: middle;
+}
+
+// base box - it's the color for note because of css class conflicts
+.admonitionblock.note {
+  box-shadow: inset 5px 0 0 0 #28c;
+}
+
+// warning
+.note.warning {
+  box-shadow: inset 5px 0 0 0 #ff3625;
+}
+
+.warning h4.note-title {
+  color: #ff3625;
+}
+
+.fa-warning:before, .fa-exclamation-triangle:before {
+  color: #ff3625;
+}
+
+// important and caution
+.note.important, .note.caution {
+  box-shadow: inset 5px 0 0 0 #ECB008;
+}
+
+.important h4.note-title, .caution h4.note-title {
+  color: #ECB008;
+}
+
+.fa-important:before, .fa-caution:before {
+  content: "\f06a";
+  color: #ECB008;
+}
+
+// note
+.fa-note:before {
+  content: "\f249";
+  color: #28c;
+}
+
+// tip
+.note.tip  {
+  box-shadow: inset 5px 0 0 0 #4b5;
+}
+
+.tip h4.note-title {
+  color: #4b5;
+}
+
+.fa-tip:before {
+  content: "\f058";
+  color: #4b5;
+}
+
+// tables yanked from existing devcenter
+table {
+    background: white;
+    margin-bottom: 1.25em;
+    border: solid 1px #dddddd;
+}
+table thead,
+table tfoot {
+    background: whitesmoke;
+    font-weight: bold;
+}
+table thead tr th,
+table thead tr td,
+table tfoot tr th,
+table tfoot tr td {
+    padding: 0.5em 0.625em 0.625em;
+    font-size: inherit;
+    color: #333333;
+    text-align: left;
+}
+table tr th,
+table tr td {
+    padding: 0.5625em 0.625em;
+    font-size: inherit;
+    color: #333333;
+}
+table tr.even,
+table tr.alt,
+table tr:nth-of-type(even) {
+    background: #f9f9f9;
+}
+table thead tr th,
+table tfoot tr th,
+table tbody tr td,
+table tr td,
+table tfoot tr td {
+    display: table-cell;
+    line-height: 1.6;
+}
+table.tableblock > caption.title {
+    white-space: nowrap;
+    overflow: visible;
+    max-width: 0;
+}
+table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
+    font-size: inherit;
+}
+table.tableblock {
+    max-width: 100%;
+}
+table.tableblock td .paragraph:last-child p > p:last-child,
+table.tableblock th > p:last-child,
+table.tableblock td > p:last-child {
+    margin-bottom: 0;
+}
+table.spread {
+    width: 100%;
+}
+table.tableblock,
+th.tableblock,
+td.tableblock {
+    border: 0 solid #dddddd;
+}
+table.grid-all th.tableblock,
+table.grid-all td.tableblock {
+    border-width: 0 1px 1px 0;
+}
+table.grid-all tfoot > tr > th.tableblock,
+table.grid-all tfoot > tr > td.tableblock {
+    border-width: 1px 1px 0 0;
+}
+table.grid-cols th.tableblock,
+table.grid-cols td.tableblock {
+    border-width: 0 1px 0 0;
+}
+table.grid-all * > tr > .tableblock:last-child,
+table.grid-cols * > tr > .tableblock:last-child {
+    border-right-width: 0;
+}
+table.grid-rows th.tableblock,
+table.grid-rows td.tableblock {
+    border-width: 0 0 1px 0;
+}
+table.grid-all tbody > tr:last-child > th.tableblock,
+table.grid-all tbody > tr:last-child > td.tableblock,
+table.grid-all thead:last-child > tr > th.tableblock,
+table.grid-rows tbody > tr:last-child > th.tableblock,
+table.grid-rows tbody > tr:last-child > td.tableblock,
+table.grid-rows thead:last-child > tr > th.tableblock {
+    border-bottom-width: 0;
+}
+table.grid-rows tfoot > tr > th.tableblock,
+table.grid-rows tfoot > tr > td.tableblock {
+    border-width: 1px 0 0 0;
+}
+.tableblock {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+table.frame-all {
+    border-width: 1px;
 }

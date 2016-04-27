@@ -1,0 +1,56 @@
+-# We are going to handle code completely differently
+- if @style == 'source'
+  -# pull in the display names
+  - names = YAML.load_file('data/displaynames.yml')
+  - data_label = ""
+  - classes = ["code-highlight"]
+  -# if a data label is specified add the "code-highlight-with-label" class
+  - if !@attributes["language"].nil?
+    - classes << "code-highlight-with-label"
+    - data_label = names[@attributes["language"]]
+  %div{:class => ["code-container","code-highlight-attached"]}
+    - if title?
+      .title=captioned_title
+    -# need to figure out middleman data lookup stuff when inside an asciidoctor template
+    %div{:class => classes, "data-label" => data_label}
+      %span{:class => ["js-copy-to-clipboard","copy-code"]} copy
+      - code_lang = attr :language, nil, false
+      - code_class = ["language-#{code_lang}"] if code_lang
+      - pre_class = ['highlight', 'language-markup']
+      - pre_lang = nil
+      - nowrap = !(@document.attr? :prewrap) || (option? :nowrap)
+      - pre_class << 'nowrap' if nowrap
+      %pre{:class=>pre_class, :lang=>pre_lang}
+        %code{:class=>["js-code",code_class], 'data-lang'=>code_lang}=content
+- else
+  %div{:id=>@id, :class=>['listingblock', role]}
+    - if title?
+      .title=captioned_title
+    .content
+      - nowrap = !(@document.attr? :prewrap) || (option? :nowrap)
+      - if @style == 'source'
+        - code_lang = attr :language, nil, false
+        - code_class = ["language-#{code_lang}"] if code_lang
+        - pre_class = ['highlight']
+        - pre_lang = nil
+        - case document.attr 'source-highlighter'
+        - when 'coderay'
+          - pre_class.unshift 'CodeRay'
+          - code_class = nil
+        - when 'pygments'
+          - pre_class.unshift 'pygments'
+          - code_class = nil
+        - when 'highlightjs', 'highlight.js'
+          - pre_class.unshift 'highlightjs'
+        - when 'prettify'
+          - pre_class.unshift 'prettyprint'
+          - pre_class << 'linenums' if attr? :linenums
+        - when 'html-pipeline'
+          - pre_lang = code_lang
+          - code_class = code_lang = pre_class = nil
+          - nowrap = false
+        - pre_class << 'nowrap' if nowrap
+        %pre{:class=>pre_class, :lang=>pre_lang}
+          %code{:class=>code_class, 'data-lang'=>code_lang}=content
+      - else
+        %pre{:class=>('nowrap' if nowrap)}=content
