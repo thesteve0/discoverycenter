@@ -122,6 +122,9 @@ set :js_dir, 'js'
 
 set :images_dir, 'img'
 
+ignore 'templates/*'
+
+
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment
