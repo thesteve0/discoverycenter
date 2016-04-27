@@ -85,10 +85,8 @@ def build_navtree(root = nil)
         extensionlessPath = sitemap.extensionless_path(key)
       end
         if extensionlessPath.end_with? ".html"
-          puts "#{extensionlessPath}"
           resource = sitemap.find_resource_by_path(extensionlessPath)
           if resource.nil?
-            puts extensionlessPath
           end
           html << "<li class='#{resource == current_page ? 'selected' : ''}'><a href='#{resource.url}'>#{resource.data.title}</a></li>"
         else
@@ -125,6 +123,8 @@ set :images_dir, 'img'
 ignore 'templates/*'
 
 
+
+
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment
@@ -141,6 +141,10 @@ configure :build do
 
   # Or use a different image path
   # set :http_prefix, "/Content/images/"
+end
+
+after_build do |builder|
+  FileUtils.cp_r '.openshift', 'build'
 end
 
 activate :deploy do |deploy|
