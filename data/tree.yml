@@ -5,6 +5,28 @@ cluster-administrator:
   index.html.erb: "/cluster-administrator/index.html.erb"
 developer:
   index.html.erb: "/developer/index.html.erb"
+  getting-started:
+    index.html.erb: "/developer/getting-started/index.html.erb"
+  languages:
+    index.html.erb: "/developer/languages/index.html.erb"
+    ceylon.html.erb: "/developer/languages/ceylon.html.erb"
+    java.html.erb: "/developer/languages/java.html.erb"
+    nodejs.html.erb: "/developer/languages/nodejs.html.erb"
+    perl.html.erb: "/developer/languages/perl.html.erb"
+    php.html.erb: "/developer/languages/php.html.erb"
+    python.html.erb: "/developer/languages/python.html.erb"
+    ruby.html.erb: "/developer/languages/ruby.html.erb"
+    static.html.erb: "/developer/languages/static.html.erb"
+  databases:
+    index.html.erb: "/developer/databases/index.html.erb"
+    amazon-rds.html.erb: "/developer/databases/amazon-rds.html.erb"
+    mongodb.html.erb: "/developer/databases/mongodb.html.erb"
+    mysql.html.erb: "/developer/databases/mysql.html.erb"
+    postgresql.html.erb: "/developer/databases/postgresql.html.erb"
+    redis.html.erb: "/developer/databases/redis.html.erb"
+    sqlite.html.erb: "/developer/databases/sqlite.html.erb"
+  managing-applications:
+    index.html.erb: "/developer/managing-applications/index.html.erb"
   faq.html.erb:   "/developer/faq.html.erb"
 systems-platform-administrator:
   index.html.erb: "/systems-platform-administrator/index.html.erb"
