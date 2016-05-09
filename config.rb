@@ -76,6 +76,18 @@ helpers do
     return html
   end
 
+  def build_pagetitle(current_page)
+    current_path = []
+    current_page.path.split(File::SEPARATOR).reverse.each do |element|
+      if element == current_page.path.split(File::SEPARATOR).reverse.first
+        current_path.push current_page.data.title
+      else
+        current_path.push (data.displaynames[element] ? displayname(element) : element.titlecase)
+      end
+
+    end
+    current_path.join(' < ')
+  end
 def build_navtree(root = nil)
     html = ""
     root.each_pair do |key,value|

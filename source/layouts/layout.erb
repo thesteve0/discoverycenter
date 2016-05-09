@@ -11,7 +11,7 @@
   <meta name="google-site-verification" content="MCaLEYfZB8HfZSTyMQYZyBeRMXGoKt46uvrwEp-KN3M">
   <meta name="msvalidate.01" content="AAA"/>
   <link rel="canonical" href="<%= "#{site_url}#{current_page.path}" %>">
-  <title><%= current_page.data.title || "OpenShift by Red Hat" %></title>
+  <title><%= "#{build_pagetitle(current_page)} | OpenShift Discovery Center" || "OpenShift Discovery Center" %></title>
   <meta name="description" content="<%= current_page.data.description || "" %>">
   <%= favicon_tag "#{openshift_assets}/subdomain/favicon32x32.png", :rel => "apple-touch-icon-precomposed" %>
   <%= favicon_tag "#{openshift_assets}/subdomain/favicon32x32.png" %>
