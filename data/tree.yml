@@ -12,7 +12,7 @@ developer:
     debian-ubuntu.html.adoc: "/developer/getting-started/debian-ubuntu.html.adoc"
     osx.html.adoc: "/developer/getting-started/osx.html.adoc"
     windows.html.adoc: "/developer/getting-started/windows.html.adoc"
-    jboss-studio.html.adoc: "/developer/getting-started/jboss-studio.html.adoc"
+    jboss-studio.html.adoc: "/developer/getting-started/jboss-developer-studio.html.adoc"
     eclipse.html.adoc: "/developer/getting-started/eclipse.html.adoc"
   languages:
     index.html.adoc: "/developer/languages/index.html.adoc"

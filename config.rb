@@ -71,7 +71,7 @@ helpers do
     end
     html = ""
     breadcrumbs.each_pair do |key,value|
-      html += "<li><a href='#{value}'>#{key.titlecase}</a></li>"
+      html += "<li><a href='#{value}'>#{(data.displaynames[key] ? displayname(key) : key.titlecase)}</a></li>"
     end
     return html
   end

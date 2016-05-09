@@ -1,5 +1,5 @@
 ---
-title: JBoss Studio
+title: JBoss Developer Studio
 ---
 
 == A Sample Tutorial Style Guide
