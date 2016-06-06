@@ -37,5 +37,9 @@ developer:
   faq.html.adoc:   "/developer/faq.html.adoc"
 systems-platform-administrator:
   index.html.erb: "/systems-platform-administrator/index.html.erb"
+fundamentals:
+  index.html.adoc: "/fundamentals/index.html.adoc"
+  building-blocks:
+    pods.html.adoc: "/fundamentals/pods.html.adoc"
 samples:
   styleguide.html.adoc: "/samples/styleguide.html.adoc"
