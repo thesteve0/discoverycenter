@@ -213,7 +213,7 @@ oc get pod hello-openshift -o yaml
 
 And you will see something like:
 
-[source]
+[source,yaml]
 ----
 apiVersion: v1
 kind: Pod
