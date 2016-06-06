@@ -1,0 +1,107 @@
+--- 
+title: Pods
+---
+:sectanchors:
+:linkattrs:
+:toc: macro
+:toclevels: 4
+
+[[tutorial-intro]]
+[.tutorial-intro]
+== Pods
+toc::[]
+
+Pods are one of the fundamental "building blocks" in OpenShift.
+
+A Pod is the thing that OpenShift schedules, routes, load balances, and so
+forth.
+
+'''
+
+[[setup-instructions]]
+=== Setup Instructions
+You will need the OpenShift client tool and an account on a system with
+OpenShift. Make sure you are logged in to the OpenShift account with the client
+tool.
+
+[[create-a-project]]
+=== Create a Project
+As you learned in the Accounts and Projects section, all resources in OpenShift
+are deployed into a project. First, create a project for your Pods exercise. You
+can do this via the web console, or the command line.
+
+To create a project via the web console, click the "OpenShift" logo at the upper
+left of your browser, and then click the blue "New Project" button. If you use
+the web console, make sure you use "pods" as the unique name for your project.
+ 
+To create the project via the command line:
+ 
+[source,bash]
+----
+oc new-project pods
+----
+
+[[pod-definition]]
+=== Pod Definition
+All resources/objects in OpenShift are serializeable data objects, and can be
+represented in JSON or YAML. We use YAML as the convention for all tutorials.
+The following YAML snippet is the definition for a Pod:
+
+[source,yaml]
+.pod.yaml
+----
+kind: Pod
+apiVersion: v1
+metadata:
+  name: hello-openshift
+  labels:
+    name: hello-openshift
+spec:
+  containers:
+  - name: hello-openshift
+    image: openshift/hello-openshift:v1.0.6
+    ports:
+    - containerPort: 8080
+      protocol: TCP
+    resources: {}
+    terminationMessagePath: "/dev/termination-log"
+    imagePullPolicy: IfNotPresent
+    capabilities: {}
+    securityContext:
+      capabilities: {}
+      privileged: false
+  restartPolicy: Always
+  dnsPolicy: ClusterFirst
+  serviceAccount: ''
+----
+
+You can find out more information about Pods in the
+https://docs.openshift.org/latest/architecture/core_concepts/pods_and_services.html[OpenShift
+Pod Documentation]. For the purpose of our fundamentals, there are only a few
+important things in this pod definition:
+
+* `.metadata.name`: This is the unique identifier ("name") of the Pod. Within a
+  project, all Pod names must be unique. You will learn later that this is not
+  much of a concern.
+* `.spec.containers`: You will notice that this is an array. You could have more
+  than one Docker container running in a Pod, but that is generally an edge case
+  and will not be explored here.
+* `.spec.containers.name`: The name of the container within the Pod.
+* `.spec.containers.image`: The Docker image that the container will use.
+* `.spec.containers.ports`: The port(s) and protocol(s) that this container
+  expects to speak.
+
+As you can see here, this Pod will be using the `hello-openshift` Docker image
+that comes from a repository called `openshift`. This repository happens to live
+on Dockerhub. However, OpenShift is running an unmodified Docker daemon, so it
+will search for this repository/image on each available registry until it finds
+it.
+
+[[create-the-pod]]
+=== Create the Pod
+It is not possible to directly input raw JSON/YAML via the web console. So, for
+this step we will need to use the `oc` command line tool. While the `oc` tool can
+actually take input from remote URLs, we will work with local files for this
+exercise.
+
+
