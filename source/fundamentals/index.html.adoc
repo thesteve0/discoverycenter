@@ -17,10 +17,11 @@ applications.
 
 Because the platform itself has a great deal of complexity, it is useful to
 learn the fundamental concepts and features before embarking on the design of an
-application. The tutorials at the left will provide a background on these
-fundamental concepts. It will be useful to go through all of them before moving
-on to other runtime-specific tutorials. It is also recommended to go through
-them in order.
+application. The fundamentals tutorials will provide a background on these
+concepts. It will be useful to go through all of them before moving on to other
+runtime-specific tutorials. It is also recommended to go through them in order.
 
+Additionally, in going through these tutorials you will learn about and how to
+use both the web console and the command line client.
 '''
 

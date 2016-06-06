@@ -98,10 +98,221 @@ will search for this repository/image on each available registry until it finds
 it.
 
 [[create-the-pod]]
-=== Create the Pod
-It is not possible to directly input raw JSON/YAML via the web console. So, for
-this step we will need to use the `oc` command line tool. While the `oc` tool can
-actually take input from remote URLs, we will work with local files for this
-exercise.
+=== Instantiate the Pod
+At this time it is not possible to directly input raw JSON/YAML via the web
+console. So, for this step we will need to use the `oc` command line tool. While
+the `oc` tool can actually take input from remote URLs, we will work with local
+files for this exercise.
 
+[.steps]
+- [.step-number]#1# [.step-title]#Download the Definition#
++
+The Pod definition above can be downloaded from
+link:/code-samples/fundamentals/fundamentals-pod.yaml[here]. Use your favorite
+method to download it (`curl`, `wget`, and so on).
 
+- [.step-number]#2# [.step-title]#Create the Pod#
++
+Use the `oc` tool to create the Pod like so:
++
+[source,bash]
+----
+oc create -f fundamentals-pod.yaml
+----
++
+You will see something like the following:
++
+[source]
+----
+pod "hello-openshift" created
+----
++
+Wait a few moments before continuing.
+
+[[examine-the-pod]]
+=== Examine the Pod
+The `oc create` command asked OpenShift to `create` the objects that were
+defined in the file that we provided. The only object defined in the file was
+the single Pod. You can use `oc get` to retrieve information about objects:
+
+[source,bash]
+----
+oc get pods
+----
+
+And you will see something like:
+[source]
+----
+NAME              READY     STATUS    RESTARTS   AGE
+hello-openshift   1/1       Running   0          7s
+----
+
+There is another command, `oc describe`, that can provide deeper details about
+objects. Try it now:
+
+[source,bash]
+----
+oc describe pod hello-openshift
+----
+
+You will see something like:
+
+[source]
+----
+Name:           hello-openshift
+Namespace:      pods
+Node:           ip-172-18-0-161.ec2.internal/172.18.0.161
+Start Time:     Mon, 06 Jun 2016 11:12:58 -0400
+Labels:         name=hello-openshift
+Status:         Running
+IP:             10.5.0.9
+Controllers:    <none>
+Containers:
+  hello-openshift:
+    Container ID:       docker://65354ce21924380c982f4bde0b8fc55ff980e6425508d74fd78a5e1ddcb4ca2f
+    Image:              openshift/hello-openshift:v1.0.6
+    Image ID:           docker://21e33bae2bc21952f0dae0978be335b7b14875da5685345437377ea45151d208
+    Port:               8080/TCP
+    QoS Tier:
+      cpu:              BestEffort
+      memory:           BestEffort
+    State:              Running
+      Started:          Mon, 06 Jun 2016 11:13:04 -0400
+    Ready:              True
+    Restart Count:      0
+    Environment Variables:
+Conditions:
+  Type          Status
+  Ready         True 
+Volumes:
+  default-token-ulxeb:
+    Type:       Secret (a volume populated by a Secret)
+    SecretName: default-token-ulxeb
+Events:
+  FirstSeen     LastSeen        Count   From                                    SubobjectPath                           Type            Reason          Message
+  ---------     --------        -----   ----                                    -------------                           --------        ------          -------
+  11m           11m             1       {default-scheduler }                                                            Normal          Scheduled       Successfully assigned hello-openshift to ip-172-18-0-161.ec2.internal
+  11m           11m             1       {kubelet ip-172-18-0-161.ec2.internal}  spec.containers{hello-openshift}        Normal          Pulling         pulling image "openshift/hello-openshift:v1.0.6"
+  11m           11m             1       {kubelet ip-172-18-0-161.ec2.internal}  spec.containers{hello-openshift}        Normal          Pulled          Successfully pulled image "openshift/hello-openshift:v1.0.6"
+  11m           11m             1       {kubelet ip-172-18-0-161.ec2.internal}  spec.containers{hello-openshift}        Normal          Created         Created container with docker id 65354ce21924
+  11m           11m             1       {kubelet ip-172-18-0-161.ec2.internal}  spec.containers{hello-openshift}        Normal          Started         Started container with docker id 65354ce21924
+----
+
+Throughout the tutorials you will see that `get` and `describe` can be used
+on all objects that OpenShift understands.
+
+Lastly, the `get` command also supports "customization" of the output. You can
+ask for JSON, YAML, or custom output formatted by a
+https://golang.org/pkg/text/template/[Go language text template]. Take a look at
+the Pod, in YAML, as OpenShift currently understands it:
+
+[source,bash]
+----
+oc get pod hello-openshift -o yaml
+----
+
+And you will see something like:
+
+[source]
+----
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    openshift.io/scc: restricted
+  creationTimestamp: 2016-06-06T15:12:58Z
+  labels:
+    name: hello-openshift
+  name: hello-openshift
+  namespace: pods
+  resourceVersion: "1889941"
+  selfLink: /api/v1/namespaces/pods/pods/hello-openshift
+  uid: 2722a2b5-2bf9-11e6-90f0-12fb2b89dd9d
+spec:
+  containers:
+  - image: openshift/hello-openshift:v1.0.6
+    imagePullPolicy: IfNotPresent
+    name: hello-openshift
+    ports:
+    - containerPort: 8080
+      protocol: TCP
+    resources: {}
+    securityContext:
+      capabilities:
+        drop:
+        - KILL
+        - MKNOD
+        - SETGID
+        - SETUID
+        - SYS_CHROOT
+      privileged: false
+      runAsUser: 1000630000
+      seLinuxOptions:
+        level: s0:c25,c15
+    terminationMessagePath: /dev/termination-log
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-ulxeb
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  host: ip-172-18-0-161.ec2.internal
+  imagePullSecrets:
+  - name: default-dockercfg-4wdjx
+  nodeName: ip-172-18-0-161.ec2.internal
+  nodeSelector:
+    env: demo
+  restartPolicy: Always
+  securityContext:
+    fsGroup: 1000630000
+    seLinuxOptions:
+      level: s0:c25,c15
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  volumes:
+  - name: default-token-ulxeb
+    secret:
+      secretName: default-token-ulxeb
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: 2016-06-06T15:13:05Z
+    status: "True"
+    type: Ready
+  containerStatuses:
+  - containerID: docker://65354ce21924380c982f4bde0b8fc55ff980e6425508d74fd78a5e1ddcb4ca2f
+    image: openshift/hello-openshift:v1.0.6
+    imageID: docker://21e33bae2bc21952f0dae0978be335b7b14875da5685345437377ea45151d208
+    lastState: {}
+    name: hello-openshift
+    ready: true
+    restartCount: 0
+    state:
+      running:
+        startedAt: 2016-06-06T15:13:04Z
+  hostIP: 172.18.0.161
+  phase: Running
+  podIP: 10.5.0.9
+  startTime: 2016-06-06T15:12:58Z
+----
+
+Take note of the `.status` information.
+
+[[software-defined-network]]
+=== Software Defined Network
+OpenShift employs a software defined network (SDN) across all of the hosts in
+the environment. This SDN enables pods on different hosts to easily communicate
+with one another -- something that the Docker daemon doesn't directly provide by
+itself.
+
+Note that the Pod IP address in this case is `10.5.0.9`. Unless you are at a
+shell **inside** the OpenShift environment, this IP address will be unaccessible
+to you. However, other Pods on the SDN can reach it (assuming no network
+isolation is in place - a topic for another tutorial).
+
+[[conclusion]]
+[.conclusion]
+=== Conclusion
+In this tutorial you learned the basics of Pods, one of the fundamental building
+blocks of applications in OpenShift. The next tutorial is about Services, which
+are a way to associate similar pods with one another.
