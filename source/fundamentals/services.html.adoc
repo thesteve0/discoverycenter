@@ -70,6 +70,8 @@ Labels:         name=hello-openshift
 Labels are key=value pairs that can be applied to every object in OpenShift.
 They are crucial to how Services work.
 
+'''
+
 [[service-definition]]
 === Service Definition
 Take a look at the following YAML:
@@ -129,6 +131,8 @@ a database and an app server in the same service. Would you want to round-robin
 traffic between an app server and then a database? In that case, you would have
 two services. This will be demonstrated in a later exercise.
 
+'''
+
 [[create-the-service]]
 === Create the Service
 There is a link:/code-samples/fundamentals/fundamentals-service.yaml[YAML
@@ -141,13 +145,16 @@ oc create -f fundamentals-service.yaml
 ----
 
 You will see something like:
-[source,bash]
+[source,text]
 ----
 service "hello-service" created
 ----
 
+'''
+
 [[examine-the-service-get]]
 === Examine the Service Using `oc get`
+
 Take a moment to examine the Service you just created.
 
 [source,bash]
@@ -155,9 +162,9 @@ Take a moment to examine the Service you just created.
 oc get service
 ----
 
-Will display something like:
+You will see something like:
 
-[source,bash]
+[source,text]
 ----
 NAME            CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
 hello-service   172.30.200.245   <none>        8080/TCP   1m
@@ -168,6 +175,8 @@ dynamically allocates a unique IP address for that Service. All other Pods
 within your Project can access the Service on the port(s) that it exposes.
 
 Additionally, OpenShift does a few other interesting things for you:
+
+'''
 
 [[environment-variables]]
 ==== Service Environment Variables
@@ -199,6 +208,8 @@ of what you need to know:
 If you wanted to access these values from within your application, you would
 simply use whatever procedure your runtime provides for accessing environment
 variables and substituting their values.
+
+'''
 
 [[service-dns]]
 ==== Service DNS
@@ -238,16 +249,22 @@ These above cases require that you already know the port you are looking for. If
 you dig into the Kubernetes docs, you will see that there are ways to discover
 the port information via DNS, as well.
 
+'''
+
 [[examine-the-service-describe]]
 === Examine the Service Using `oc describe`
+
+
+Execute the following:
+
 [source,bash]
 ----
 oc describe service hello-service
 ----
 
-Will display something like:
+You will see something like:
 
-[source,bash]
+[source,text]
 ----
 Name:                   hello-service
 Namespace:              pods
@@ -278,7 +295,7 @@ oc delete pod hello-openshift-3
 
 You will see something like:
 
-[source,bash]
+[source,text]
 ----
 pod "hello-openshift-3" deleted
 ----
@@ -292,7 +309,7 @@ oc get endpoints hello-service
 
 You will see something like:
 
-[source,bash]
+[source,text]
 ----
 NAME            ENDPOINTS                       AGE
 hello-service   10.1.0.10:8080,10.8.0.10:8080   55m
@@ -309,7 +326,7 @@ oc describe service hello-service
 
 You will see something like:
 
-[source,bash]
+[source,text]
 ----
 Name:                   hello-service
 Namespace:              pods
@@ -322,6 +339,8 @@ Endpoints:              10.1.0.10:8080,10.8.0.10:8080
 Session Affinity:       None
 No events.
 ----
+
+'''
 
 [[conclusion]]
 [.conclusion]

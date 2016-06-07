@@ -24,6 +24,8 @@ You will need the OpenShift client tool and an account on a system with
 OpenShift. Make sure you are logged in to the OpenShift account with the client
 tool.
 
+'''
+
 [[create-a-project]]
 === Create a Project
 As you learned in the Accounts and Projects section, all resources in OpenShift
@@ -40,6 +42,8 @@ To create the project via the command line:
 ----
 oc new-project pods
 ----
+
+'''
 
 [[pod-definition]]
 === Pod Definition
@@ -112,6 +116,8 @@ on Dockerhub. However, OpenShift is running an unmodified Docker daemon, so it
 will search for this repository/image on each available registry until it finds
 it.
 
+'''
+
 [[create-the-pod]]
 === Instantiate the Pod
 At this time it is not possible to directly input raw JSON/YAML via the web
@@ -137,7 +143,7 @@ oc create -f fundamentals-pod.yaml
 +
 You will see something like the following:
 +
-[source]
+[source,text]
 ----
 pod "hello-openshift" created
 ----
@@ -156,7 +162,7 @@ oc get pods
 ----
 
 And you will see something like:
-[source]
+[source,text]
 ----
 NAME              READY     STATUS    RESTARTS   AGE
 hello-openshift   1/1       Running   0          7s
@@ -172,7 +178,7 @@ oc describe pod hello-openshift
 
 You will see something like:
 
-[source]
+[source,text]
 ----
 Name:           hello-openshift
 Namespace:      pods
@@ -313,6 +319,8 @@ status:
 
 Take note of the `.status` information.
 
+'''
+
 [[software-defined-network]]
 === Software Defined Network
 OpenShift employs a software defined network (SDN) across all of the hosts in
@@ -324,6 +332,8 @@ Note that the Pod IP address in this case is `10.5.0.9`. Unless you are at a
 shell **inside** the OpenShift environment, this IP address will be unaccessible
 to you. However, other Pods on the SDN can reach it (assuming no network
 isolation is in place - a topic for another tutorial).
+
+'''
 
 [[conclusion]]
 [.conclusion]
