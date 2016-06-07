@@ -41,5 +41,6 @@ fundamentals:
   index.html.adoc: "/fundamentals/index.html.adoc"
   building-blocks:
     pods.html.adoc: "/fundamentals/pods.html.adoc"
+    services.html.adoc: "/fundamentals/services.html.adoc"
 samples:
   styleguide.html.adoc: "/samples/styleguide.html.adoc"
