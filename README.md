@@ -7,7 +7,7 @@ Center](https://discover.openshift.com/).
 ## Development Setup
 If you don't have a GitHub account, start by [creating a GitHub
 account](https://github.com/join).  Fork the
-[devcenter](https://github.com/openshift/devcenter) project to your GitHub
+[discoverycenter](https://github.com/openshift/discoverycenter) project to your GitHub
 account.  Clone your newly forked repository into your local workspace:
 
     $ git clone git@github.com:[your user]/discoverycenter.git
@@ -54,7 +54,7 @@ request.
 
 ### Contributing
 It's usually a good idea to start by [submitting an issue describing your
-feedback or planned changes](https://github.com/openshift/devcenter/issues).
+feedback or planned changes](https://github.com/openshift/discoverycenter/issues).
 
 To contribute changes, first [setup your own local copy of this
 project](#development-setup). Then, create a new branch (from `master`), to
@@ -64,11 +64,11 @@ track your changes:
 
         $ git pull --rebase upstream master
 
-1. Push the pulled updates to your fork of devcenter on GitHub:
+1. Push the pulled updates to your fork of discoverycenter on GitHub:
 
         $ git push
 
-    Make sure there is an [issue](https://github.com/openshift/devcenter/issues)
+    Make sure there is an [issue](https://github.com/openshift/discoverycenter/issues)
     logged for your Bug Fix or Feature Request that you are working on here.
 
 1. Create a simple topic branch to isolate that work (just a recommendation):
@@ -103,8 +103,8 @@ push it out).
 After completing your changes, test and review them locally.
 
 Finally, [send us a `Pull
-Request`](https://github.com/openshift/devcenter/compare) comparing your new
-branch with `openshift/devcenter:master`.
+Request`](https://github.com/openshift/discoverycenter/compare) comparing your new
+branch with `openshift/discoverycenter:master`.
 
 When you're done, reset your development environment by repeating the steps in
 this section: switch back to master, update your repo, and cut a new feature
@@ -133,24 +133,24 @@ looks like this:
 
         [remote "upstream"]
             fetch = +refs/heads/*:refs/remotes/upstream/*
-            url = git@github.com:openshift/devcenter.git
+            url = git@github.com:openshift/discoverycenter.git
 
 1. Now add the line fetch = +refs/pull/*/head:refs/remotes/upstream/pr/* to this section.
 
         [remote "upstream"]
             fetch = +refs/heads/*:refs/remotes/upstream/*
-            url = git@github.com:openshift/devcenter.git
+            url = git@github.com:openshift/discoverycenter.git
             fetch = +refs/pull/*/head:refs/remotes/upstream/pr/*
 
 1. Now fetch all the pull requests:
 
-    $ git fetch upstream
-    From github.com:openshift/devcenter
-     * [new ref]         refs/pull/1000/head -> upstream/pr/1000
-     * [new ref]         refs/pull/1002/head -> upstream/pr/1002
-     * [new ref]         refs/pull/1004/head -> upstream/pr/1004
-     * [new ref]         refs/pull/1009/head -> upstream/pr/1009
-    ...
+        $ git fetch upstream
+        From github.com:openshift/discoverycenter
+         * [new ref]         refs/pull/1000/head -> upstream/pr/1000
+         * [new ref]         refs/pull/1002/head -> upstream/pr/1002
+         * [new ref]         refs/pull/1004/head -> upstream/pr/1004
+         * [new ref]         refs/pull/1010/head -> upstream/pr/1009
+        ...
 
 1. To check out a particular pull request:
 
