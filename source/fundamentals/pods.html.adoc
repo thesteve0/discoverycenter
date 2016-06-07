@@ -76,20 +76,35 @@ spec:
 ----
 
 You can find out more information about Pods in the
-https://docs.openshift.org/latest/architecture/core_concepts/pods_and_services.html[OpenShift
+https://docs.openshift.org/latest/architecture/core_concepts/pods_and_services.html#pods[OpenShift
 Pod Documentation]. For the purpose of our fundamentals, there are only a few
-important things in this pod definition:
+important things in this Pod definition:
 
-* `.metadata.name`: This is the unique identifier ("name") of the Pod. Within a
+[cols="2*", options="header"]
+|===
+|Name
+|Description
+
+|`.metadata.name`
+|This is the unique identifier ("name") of the Pod. Within a
   project, all Pod names must be unique. You will learn later that this is not
   much of a concern.
-* `.spec.containers`: You will notice that this is an array. You could have more
+
+|`.spec.containers`
+| You will notice that this is an array. You could have more
   than one Docker container running in a Pod, but that is generally an edge case
   and will not be explored here.
-* `.spec.containers.name`: The name of the container within the Pod.
-* `.spec.containers.image`: The Docker image that the container will use.
-* `.spec.containers.ports`: The port(s) and protocol(s) that this container
+
+|`.spec.containers.name`
+|The name of the container within the Pod.
+
+|`.spec.containers.image`
+|The Docker image that the container will use.
+
+|`.spec.containers.ports`
+|The port(s) and protocol(s) that this container
   expects to speak.
+|===
 
 As you can see here, this Pod will be using the `hello-openshift` Docker image
 that comes from a repository called `openshift`. This repository happens to live

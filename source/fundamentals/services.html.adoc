@@ -1,0 +1,332 @@
+--- 
+title: Services
+---
+:sectanchors:
+:linkattrs:
+:toc: macro
+:toclevels: 4
+
+[[tutorial-intro]]
+[.tutorial-intro]
+== Pods
+toc::[]
+
+Services are one of the fundamental "building blocks" in OpenShift.
+
+A service is an abstraction which defines a logical set of pods and a policy by
+which to access them. It also serves as an internal load balancer.
+
+'''
+
+[[setup-instructions]]
+=== Setup Instructions
+You will need the OpenShift client tool and an account on a system with
+OpenShift. Make sure you are logged in to the OpenShift account with the client
+tool. 
+
+[.steps]
+- [.step-number]#1# [.step-title]#Create a Project#
++
+[source,bash]
+----
+oc new-project services
+----
+- [.step-number]#2# [.step-title]#Deploy some Pods#
++
+There is a link:/code-samples/fundamentals/fundamentals-service-pods.yaml[YAML
+file] that defines three pods. It makes use of the `List` type, which is a
+special object type that the OpenShift CLI understands. Download the YAML file
+and then use `oc` to create the pods:
++
+[source,bash]
+----
+oc create -f fundamentals-service-pods.yaml
+----
++
+You will see something like:
++
+[source,bash]
+----
+pod "hello-openshift-1" created
+pod "hello-openshift-2" created
+pod "hello-openshift-3" created
+----
+
+[[examine-the-pods]]
+=== Examine the Pods
+Take a moment to examine the Pods you just created. Use `oc get` and `oc
+describe`. Try out `-o yaml` or `-o json` with `oc get`.
+
+In the `describe` output you will notice that the Pods carry a Label:
+
+[source,bash]
+----
+oc describe pod hello-openshift-1
+...
+Labels:         name=hello-openshift
+...
+----
+
+Labels are key=value pairs that can be applied to every object in OpenShift.
+They are crucial to how Services work.
+
+[[service-definition]]
+=== Service Definition
+Take a look at the following YAML:
+
+[source,yaml]
+.service.yaml
+----
+kind: Service
+apiVersion: v1
+metadata:
+  name: hello-service
+  labels:
+    name: hello-openshift
+spec:
+  selector:
+    name: hello-openshift
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+----
+
+You can find out more information about Services in the
+https://docs.openshift.org/latest/architecture/core_concepts/pods_and_services.html#services[OpenShift
+Service Documentation]. For the purpose of our fundamentals, there are only a few
+important things in this Service definition:
+
+[cols="2*", options="header"]
+|===
+|Name
+|Description
+
+|`.metadata.name`
+|This is the unique identifier ("name") of the Service. Within a
+  project, all Service names must be unique.
+
+|`.metadata.labels`
+|key=value pairs (Labels) that are attached to this service. In this case, there
+is one pair: name=hello-openshift
+
+|`.spec.ports`
+|This is the list of ports that the service "listens" on, as well as the
+  protocols that the listener supports. In this case the service listens on port
+  8080 and forwards traffic to port 8080. There is no requirement for these ports
+  to match. A service could listen on port 80 but send traffic to port 9000.
+
+|`.spec.selector`
+|This is the most important part of a service. The selector is a list of
+key=value pairs. **Any** Pod that matches this list is associated with the
+service.
+|===
+
+Take a moment to digest the last point. **Any** Pod that matches the list of
+selectors is associated with the service. Any Pods that are in the service will
+have traffic load balanced across them. It would not make sense to include both
+a database and an app server in the same service. Would you want to round-robin
+traffic between an app server and then a database? In that case, you would have
+two services. This will be demonstrated in a later exercise.
+
+[[create-the-service]]
+=== Create the Service
+There is a link:/code-samples/fundamentals/fundamentals-service.yaml[YAML
+file] that defines the Service above. Go ahead and download it and then use `oc`
+to create the Service:
+
+[source,bash]
+----
+oc create -f fundamentals-service.yaml
+----
+
+You will see something like:
+[source,bash]
+----
+service "hello-service" created
+----
+
+[[examine-the-service-get]]
+=== Examine the Service Using `oc get`
+Take a moment to examine the Service you just created.
+
+[source,bash]
+----
+oc get service
+----
+
+Will display something like:
+
+[source,bash]
+----
+NAME            CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
+hello-service   172.30.200.245   <none>        8080/TCP   1m
+----
+
+Where did the "cluster ip" come from? When a Service is created, OpenShift
+dynamically allocates a unique IP address for that Service. All other Pods
+within your Project can access the Service on the port(s) that it exposes.
+
+Additionally, OpenShift does a few other interesting things for you:
+
+[[environment-variables]]
+==== Service Environment Variables
+One of the "magic" features of OpenShift is that it will inject environment
+variables into the runtime environment inside the Docker container that it
+launches inside the Pod. These environment variables include many useful bits of
+information, especially Service information.
+
+OpenShift will inject information about all Services in a Project into every
+single Pod that is running in that Project. The
+link:http://kubernetes.io/docs/user-guide/services/#environment-variables[Kubernetes
+Service documentation] provides some gory details, but here's the short version
+of what you need to know:
+
+[cols="2*", options="header"]
+|===
+|Variable Format
+|Description
+
+|`name_SERVICE_HOST`
+|The IP address of the service. In our example above, the injected var is
+`HELLO_SERVICE_SERVICE_HOST` and its value is `172.30.200.245`.
+
+|`name_SERVICE_PORT`
+|The port for the service. In our example above, the injected var is
+`HELLO_SERVICE_SERVICE_PORT` and its value is `8080`.
+|===
+
+If you wanted to access these values from within your application, you would
+simply use whatever procedure your runtime provides for accessing environment
+variables and substituting their values.
+
+[[service-dns]]
+==== Service DNS
+One of the drawbacks to environment variables is that they cannot be injected
+dynamically. In order to inherit "new" environment variables a container would
+need to be restarted.
+
+DNS, however, is external to the container and OpenShift already has an internal
+system to dynamically update it as service information changes. Similar to
+environment variables, DNS names have a particular format they always inherit.
+The link:http://kubernetes.io/docs/user-guide/services/#dns[Kubernetes DNS
+system documentation] provides some gory details, but here's the short version
+of what you need to know:
+
+[cols="2*", options="header"]
+|===
+|Format
+|Description
+
+|`cluster.local`
+|The main domain under which all DNS entries are created
+
+|`servicename`
+|All Pods are created with a resolver configuration that will automatically
+understand FQDNs matching this format. In our example above, the shortest DNS
+name for our Service is just `hello-service`.
+
+|`servicename.projectname`
+|As above, a more specific DNS name. In our case, `hello-service.services`
+
+|`servicename.projectname.svc.cluster.local`
+|The most-specific DNS name for a Service, also resolveable from within other
+Projects. In our example above, `hello-service.services.svc.cluster.local`
+|===
+
+These above cases require that you already know the port you are looking for. If
+you dig into the Kubernetes docs, you will see that there are ways to discover
+the port information via DNS, as well.
+
+[[examine-the-service-describe]]
+=== Examine the Service Using `oc describe`
+[source,bash]
+----
+oc describe service hello-service
+----
+
+Will display something like:
+
+[source,bash]
+----
+Name:                   hello-service
+Namespace:              pods
+Labels:                 name=hello-openshift
+Selector:               name=hello-openshift
+Type:                   ClusterIP
+IP:                     172.30.200.245
+Port:                   <unset> 8080/TCP
+Endpoints:              10.1.0.10:8080,10.5.0.9:8080,10.8.0.10:8080
+Session Affinity:       None
+No events.
+----
+
+Take special note of the `Endpoints` items. When you created the Service you did
+not tell OpenShift anything about what Pods belonged to it. However, here is a
+list of endpoints associated with the Service. OpenShift determined which Pods
+were associated with the Service using the Selector that was defined. All of the
+Pods you created using the example YAML had a key=value pair
+`name=hello-openshift`. The selector on the service was `name=hello-openshift`.
+
+OpenShift is constantly, dynamically examining all of the Pods it knows about
+and determining Service associations. Go ahead and try a little experiment:
+
+[source,bash]
+----
+oc delete pod hello-openshift-3
+----
+
+You will see something like:
+
+[source,bash]
+----
+pod "hello-openshift-3" deleted
+----
+
+Now, get the list of Endpoints directly:
+
+[source,bash]
+----
+oc get endpoints hello-service
+----
+
+You will see something like:
+
+[source,bash]
+----
+NAME            ENDPOINTS                       AGE
+hello-service   10.1.0.10:8080,10.8.0.10:8080   55m
+----
+
+Now there are only two endpoints -- because you deleted one of the Pods that was
+associated with the service. The `oc describe` output will reflect the same
+information:
+
+[source,bash]
+----
+oc describe service hello-service
+----
+
+You will see something like:
+
+[source,bash]
+----
+Name:                   hello-service
+Namespace:              pods
+Labels:                 name=hello-openshift
+Selector:               name=hello-openshift
+Type:                   ClusterIP
+IP:                     172.30.200.245
+Port:                   <unset> 8080/TCP
+Endpoints:              10.1.0.10:8080,10.8.0.10:8080
+Session Affinity:       None
+No events.
+----
+
+[[conclusion]]
+[.conclusion]
+=== Conclusion
+In this tutorial you learned the basics of Services, one of the fundamental
+building blocks of applications in OpenShift. The next tutorial is about
+Routes, which are a way to expose your Services and Pods to the outside world.
+
