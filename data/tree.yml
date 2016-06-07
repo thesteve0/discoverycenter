@@ -42,5 +42,6 @@ fundamentals:
   building-blocks:
     pods.html.adoc: "/fundamentals/pods.html.adoc"
     services.html.adoc: "/fundamentals/services.html.adoc"
+    routes.html.adoc: "/fundamentals/routes.html.adoc"
 samples:
   styleguide.html.adoc: "/samples/styleguide.html.adoc"
