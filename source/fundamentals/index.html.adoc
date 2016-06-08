@@ -1,5 +1,5 @@
 --- 
-title: OpenShift Fundamentals
+title: Overview
 ---
 :sectanchors:
 :linkattrs:
@@ -9,7 +9,6 @@ title: OpenShift Fundamentals
 [[tutorial-intro]]
 [.tutorial-intro]
 == OpenShift Fundamentals
-toc::[]
 
 OpenShift is a container application platform that enables developers
 and IT architects to design, build and deploy complex multi-component
@@ -23,5 +22,6 @@ runtime-specific tutorials. It is also recommended to go through them in order.
 
 Additionally, in going through these tutorials you will learn about and how to
 use both the web console and the command line client.
+
 '''
 
