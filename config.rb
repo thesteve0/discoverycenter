@@ -113,8 +113,7 @@ def build_navtree(root = nil)
   end
 
   def nav_index(current_page)
-    path = current_page.path.split(File::SEPARATOR)
-    return data.tree[path[0]]
+    return data.tree
   end
   
   def displayname(name)
