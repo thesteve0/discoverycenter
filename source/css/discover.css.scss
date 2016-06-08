@@ -551,3 +551,36 @@ table.grid-rows tfoot > tr > td.tableblock {
 table.frame-all {
     border-width: 1px;
 }
+
+/*healthier hit-targets on TOC*/
+.toc a {padding-left: 1em;display:block; width: 100%; text-indent:-.25em}
+.toc li{position:relative}
+.toc li:before{position:absolute; left:0em;}
+.toc li li a{padding-left:2.5em;}
+.toc a:hover{background-color:#fff;}
+
+/*aligned color palette for syntax*/
+.token.property, .token.tag, .token.boolean, .token.number, .token.constant, .token.symbol, .token.deleted{color:#b30000}
+.token.selector, .token.attr-name, .token.string, .token.char, .token.builtin, .token.inserted{color:#4fa74a}
+code[class*="language-"], pre[class*="language-"]{color:#4c575e}
+.token.regex, .token.important, .token.variable{color:#ec7a08}
+.token.atrule, .token.attr-value, .token.keyword{color:#028c98}
+.token.punctuation{color:#a4b0b7}
+code[class*="language-"], pre[class*="language-"]{text-shadow:none}
+
+/*real blue links in copy*/
+p > a{color:#4e9fdd}
+
+/*heavyweight headings*/
+div div[class^="sect"] h3 {font-weight:700 ; letter-spacing:.04em;}
+.sect2.conclusion h3{font-weight: 200; text-transform: uppercase;}
+
+/*tiny fix for conclusion being eaten by the footer*/
+.conclusion{padding-bottom:4em}
+
+/*no pink*/
+code{background-color:transparent !important; box-shadow: 0 0 0 1px rgba(0,0,0,0.1); margin: 0 .2em; border-radius:0;}
+pre > code{box-shadow: none}
+
+/*uppercase UI chrome*/
+div .code-highlight span.copy-code{text-transform: uppercase; font-weight:600; font-size: .8em; color:#8a969e}
