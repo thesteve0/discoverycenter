@@ -182,7 +182,7 @@
 }
 .sidebar ul {
   padding-left:0px;
-  font-family: Roboto, sans-serif
+  font-family: Overpass, Roboto, sans-serif
 }
 .sidebar li ul {
   padding-left:0px;
@@ -272,13 +272,13 @@ html,body {
 // As we are using the OpenShift "subdomain" stylesheet we additionally
 // need to reset/override changes we pick up from it
 code {
-  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+  font-family: 'Overpass Mono', Consolas, Monaco, 'Andale Mono', monospace;
 }
 
 div[class^="sect"] p {
   color: #333;
   font-size: 16px;
-  font-family: 'Roboto', sans-serif;
+  font-family: Overpass, 'Roboto', sans-serif;
   line-height: 28.8px;
 }
 
@@ -291,7 +291,7 @@ div[class^="sect"] h1,
 div[class^="sect"] h2,
 div[class^="sect"] h3,
 div[class^="sect"] h4 {
-  font-family: 'Roboto', sans-serif;
+  font-family: Overpass, 'Roboto', sans-serif;
   font-weight: 300;
   position: relative;
   padding-right: 60px;
@@ -313,7 +313,7 @@ div[class^="sect"] h4 {
 
 // table of contents for vsdocs
 .table-of-contents a{
-  font-family: 'Roboto', sans-serif;
+  font-family: Overpass, 'Roboto', sans-serif;
 }
 
 // this is a hacky fix for the fact that we always will have setup instructions
@@ -339,19 +339,19 @@ div[class^="sect"] h4 {
 
 .steps ul li span.step-title {
   font-size: 18px;
-  font-family: Roboto, sans-serif;
+  font-family: Overpass, Roboto, sans-serif;
 }
 
 // vsdocs code highlighter uses prism.js
 // http://prismjs.com/
 .code-highlight span.copy-code {
-  font-family: Roboto, sans-serif;
+  font-family: Overpass, Roboto, sans-serif;
   font-size: 14px;
   line-height: 16px;
 }
 
 .code-highlight pre code {
-  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+  font-family: 'Overpass Mono', Consolas, Monaco, 'Andale Mono', monospace;
   font-size: 14px;
   padding: 2em 1em;
 }
@@ -370,7 +370,7 @@ pre[class*=language-] {
 // we move the file title outside the code box, which is a little ugly
 // open to suggestions here
 .code-container .title {
-  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+  font-family: 'Overpass Mono', Consolas, Monaco, 'Andale Mono', monospace;
   background-color: #f0f3f5;
   padding: 0.5em 0 0.5em 1em;
 }
@@ -384,7 +384,7 @@ pre[class*=language-] {
 // admonition general
 
 h4.note-title {
-  font-family: Roboto,sans-serif;
+  font-family: Overpass, Roboto,sans-serif;
   margin: 0 0 .5em;
   font-weight: 300;
   font-size: 22px;
