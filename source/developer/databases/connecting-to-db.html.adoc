@@ -1,0 +1,28 @@
+--- 
+title: Connecting Your Code To a Database
+---
+:sectanchors:
+:linkattrs:
+:toc: macro
+:toclevels: 4
+
+== Connecting Your Code To a Database
+toc::[]
+
+This short document will show you the steps, following best practices, to add a database to your existing code base. We will use PostgreSQL as the main database example. There will be examples of how to connect to the database in each of our major languages. These examples will be very simple and are not neccesarily how you will finally end up connecting. Their purpose is to make sure you understand the concepts so you can apply it to your framework of choice
+
+[NOTE]
+====
+At the end of this document we will explain why, in general, it is easier to add a database (or message queue, caching layer, etc.) before you add your code. The general idea is that the code containers won't pick up the changes to "services" created after it's creation. To get those changes to be registered you have to restart your code containers. 
+====
+
+[[setup-instructions]]
+=== Setup Instructions
+
+As mentioned above, we assume you already have a project with code in it. If not, then please go to the documentation XXXXXLINK and create a project. Since project names must be unique, in the examples here we will subsitute <project> for your project. 
+
+You also need to be logged into either the command line utility XXXXXLink or the web console. We will show examples from both.
+
+
+
+
