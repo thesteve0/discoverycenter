@@ -39,6 +39,23 @@ We strongly recommend against it. TODO WHY DO WE RECOMMEND AGAINST IT?
 
 Instead you should use a template that contains not only the configuration for link:/fundamentals/pods.html[the Pod] but also for configuation for link:/fundamentals/services.html[Services], and link:/fundamentals/XXXXXX[Deployment Configurations]. These templates can also be imported into your project or into the entire OpenShift cluster allowing people to re-use the definitions. 
 
-On OpenShift Online, we have the following DB templates:
+==== Web Console
+
+[.steps]
+- [.step-number]#1# [.step-title]#Add to Project#
++
+Images need to be here
++
+more text
+
+
+- [.step-number]#2# [.step-title]#Fill in the Form#
++
+Test
++
+More text
+
+==== CLI instructions
+Finding templates in the CLI is a bit more complicated. On OpenShift Online, we have the following DB templates:
 
 
